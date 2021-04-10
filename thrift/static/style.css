@@ -1,0 +1,49 @@
+body{
+    width : 100%;
+}
+nav{
+    
+}
+
+.view-data-form .service{
+    height : 45px;
+    width : auto
+}
+
+
+input, select {
+    width : 100%;
+    height: 45px;
+    margin-bottom: 10px;
+    font-size : 5vw
+}
+.add-expenditure select {
+ 
+}
+.add_field_button{
+    width: 100%;
+}
+a{
+    text-decoration : none;
+}
+
+
+/*label:nth-child(even) {
+   background-color: #ddd;
+   display:block;
+}  
+*/
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}

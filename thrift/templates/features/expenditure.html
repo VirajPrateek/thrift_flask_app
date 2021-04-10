@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Add Expenditure{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form class="add-expenditure" method="post">
+  	<input type="date" name="date" id='txtDate' value="{{ request.form['date'] }}" placeholder="Date">
+
+    <select name="name" id="name"> 
+    	<option selected disabled option>Who spent?</option>
+    	<option value="Prashant">Prashant</option>
+    	<option value="Pragya">Pragya</option>
+    	<option value="Harsh">Harsh</option>
+    	<option value="Yash">Yash</option>
+    	<option value="Nidhi">Nidhi</option>
+    	<option value="Prateek">Prateek</option>
+    </select>
+   
+   <select name="category" id="category">
+   		<option selected disabled>Category</option>
+   		<option value="Kitchen">Kitchen/Edibles</option>
+   		<option value="Toiletry">Toiletry</option>
+   		<option value="Stationery">Stationery</option>
+   		<option value="Miscellaneous">Miscellaneous</option>
+   </select>
+
+   <div class="input_fields_wrap">
+    <div></div>
+  </div>
+  <input type="button" class="add_field_button" value="Add Item">
+
+ 	<input type="hidden" name="totalAmount" value='0' id="totalAmount">
+	Total Amount:
+  	<input type="number" value='0' id="totalAmountDisplay" readonly>
+  	<input type="hidden" name="itemList" id="itemList">
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

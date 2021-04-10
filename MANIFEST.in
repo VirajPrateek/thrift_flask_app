@@ -1,0 +1,4 @@
+include thrift/schema.sql
+graft thrift/static
+graft thrift/templates
+global-exclude *.pyc

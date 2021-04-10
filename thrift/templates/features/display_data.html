@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ tableFor }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="result" style="overflow-x: auto">
+  {% if tableFor == 'Balance Enquiry' %}
+    Available balance: Rs. {{bal}}
+
+  {% else %}
+  <table border="1px">
+    <thead>
+    {% if tableFor == 'All Income' or 'Last Income' %}
+      <th>ID</th>
+      <th>Added On</th>
+      <th>Source</th>
+      <th>Amount</th>
+      <th>Received by</th>
+      <th>Inserted by</th>
+      <th>Remarks</th>
+    
+    {% elif tableFor == 'All Expenditure' or 'Last Expenditure' %}
+      <th>ID</th>
+      <th>Date</th>
+      <th>Category</th>
+      <th>Items</th>
+      <th>Amount</th>
+      <th>Spent by</th>
+      <th>Inserted by</th>
+    {% endif %}
+  </thead>
+    {% for item in data %}
+    
+  <tr>
+      {% for i in range(item|length) %}
+        <td>{{item[i]}}</td>
+      {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+{% endif%}
+</div>
+{% endblock %}
