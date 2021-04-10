@@ -11,8 +11,9 @@
 
   {% else %}
   <table border="1px">
+    
+    {% if tableFor == 'All Income' or tableFor== 'Last Income' %}
     <thead>
-    {% if tableFor == 'All Income' or 'Last Income' %}
       <th>ID</th>
       <th>Added On</th>
       <th>Source</th>
@@ -20,8 +21,10 @@
       <th>Received by</th>
       <th>Inserted by</th>
       <th>Remarks</th>
-    
-    {% elif tableFor == 'All Expenditure' or 'Last Expenditure' %}
+    </thead>
+  {% endif %}
+  {%if tableFor == 'All Expenditure' or tableFor== 'Last Expenditure' %}
+    <thead>
       <th>ID</th>
       <th>Date</th>
       <th>Category</th>
@@ -29,8 +32,9 @@
       <th>Amount</th>
       <th>Spent by</th>
       <th>Inserted by</th>
+    </thead>
     {% endif %}
-  </thead>
+
     {% for item in data %}
     
   <tr>

@@ -110,7 +110,7 @@ def view():
 				 FROM expenditure ORDER BY(id) DESC
 				""").fetchall()
 			db.commit()
-			tableFor = ' All Expenditure'
+			tableFor = 'All Expenditure'
 			return render_template('features/display_data.html',
 			 data = data, tableFor = tableFor)
 

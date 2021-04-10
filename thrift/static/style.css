@@ -1,38 +1,113 @@
-body{
-    width : 100%;
+.view-data-form select{
+    width:200px;
+    height:40px;
+    float:right;
+    border-radius:5px
 }
-nav{
-    
-}
-
-.view-data-form .service{
-    height : 45px;
-    width : auto
-}
-
-
-input, select {
-    width : 100%;
-    height: 45px;
-    margin-bottom: 10px;
-    font-size : 5vw
-}
-.add-expenditure select {
  
-}
-.add_field_button{
-    width: 100%;
-}
-a{
-    text-decoration : none;
+ input[type='submit'],select#name,
+  select#category, select#source {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 25px; 
+    width : 200px;
+    margin : 15px;
+  }
+ input[type='submit']:hover {
+    background-color: #4CAF50;
+    color: white;
+     outline: none;
+ 	 color: green;
 }
 
 
-/*label:nth-child(even) {
-   background-color: #ddd;
-   display:block;
-}  
-*/
+ select#name, select#source, 
+ select#category{
+ 	background-color: #008a98;
+ 	font-size:16px;
+ 	width:200px;
+ 	
+ }
+
+input[type='date'], input[type='password'],
+ input[type='text'], input[type = 'number']{
+ 	background: none;
+ 	text-align: center;
+	border-radius: 5px;
+	padding: 10px;
+	width: 200px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom:2px solid #008cba;
+	font-family: 'Montserrat', sans-serif;
+    font-size: 25px; 
+    margin: 10px;
+
+}
+
+/*  servie list */
+div.anItem{
+	background-color:lightyellow
+}
+
+input.iName, input.iAmount{
+	height:20px;
+	border: 1px solid grey;
+}
+
+button.remove_field {
+background-color:maroon;
+border:none;
+height: 30px;
+font-family:'Montserrat', sans-serif;
+color:white;
+}
+input.add_field_button{
+margin-top:40px;
+background-color: darkgreen;
+height:40px;
+width:100px;
+border:none;
+font-family:'Montserrat', sans-serif;
+color:white;
+}
+
+input#totalAmountDisplay{
+	border:none;
+	color: red;
+	font-size:30px;
+	width:100px;
+	text-align:right;
+	padding:10px 0px 10px 0px;
+}
+
+
+input[name='remarks']{
+    font-size:15px;
+    width: 90%;
+    height:50px;
+    text-align:center;
+    margin: 10px;
+}
+hr{
+	border-top: 1px dashed #bbb
+}
+header{
+	width:100%;
+	text-align:left;
+	margin-top:20%;
+}
+
+
 
 table {
   border-collapse: collapse;
@@ -46,4 +121,115 @@ th, td {
   padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(even){
+	background-color: #f2f2f2
+}
+
+.sidepanel  {
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+.openbtn {
+  font-size: 35px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color:#444;
+}
+
+.user{
+float:right;
+}
+
+div.top-bar{
+	background-color:black;
+}
+div.top-bar a{
+text-decoration:none;
+color: white;
+font-family:'Montserrat', sans-serif;
+}
+div.top-bar .app-name {
+  width: 100;
+  overflow-x:0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: black;
+  height: ;
+  font-size: 35px;
+}
+
+footer{
+	background-color:black;
+	color:white;
+	text-align:center;
+	 position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      z-index:1;
+}
+
+span.front-page{
+	color:black;
+	width:;
+	text-align:center;
+	font-size:50px;
+	position:absolute;
+	top:30%;
+	left:35%;
+}
+
+span.front-page-name{
+	position:absolute;
+	top:60vh;
+	left:30vw;
+	font-size:45px;
+	color:black;
+}
+span.links{
+position:absolute;
+top: 70vh;
+left: 40vw;
+}
+span.links a{
+	text-decoration:none;
+	color:red;
+	 background-color:yellow;
+	 font-size:20px
+}

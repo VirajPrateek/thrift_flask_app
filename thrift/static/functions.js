@@ -10,7 +10,7 @@ $(document).ready(function() {
    		 	break;
 	}
 
-	$(function(){
+$(function(){
     var dtToday = new Date();
     
     var month = dtToday.getMonth() + 1;
@@ -23,10 +23,18 @@ $(document).ready(function() {
     
     var maxDate = year + '-' + month + '-' + day;
     $('#txtDate').attr('max', maxDate);
+    $('#txtDate').val(maxDate);
 });
 
 });
 
+function openNav() {
+  document.getElementById("mySidepanel").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidepanel").style.width = "0";
+}
 
 
 function addingExpenditure(){
@@ -40,8 +48,9 @@ function addingExpenditure(){
 		e.preventDefault();
 		if(x < max_fields){ //max input box allowed
 			x++; //text box increment
-			$(wrapper).append('<div><input type="text" class="iName" name="iName" placeholder="Item Name"/>'+
-				'<input type="number" class="iAmount" name="iAmount" placeholder="Item Amount"/>'
+			$(wrapper).append('<div class="anItem" style="background-color:lightyellow; margin:13px;">'+
+				'<input type="text" class="iName" name="iName" placeholder="Item Name"/>'+
+				'<input type="number" class="iAmount" name="iAmount" placeholder="Item Amount" required/><br/>'
 				+'<button class="remove_field">Remove</button></div>'); //add input box
 		}
 
