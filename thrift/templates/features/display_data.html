@@ -5,12 +5,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="result" style="overflow-x: auto">
+
+<div class="result" style="overflow-x: auto; overflow-y: auto;">
   {% if tableFor == 'Balance Enquiry' %}
-    Available balance: Rs. {{bal}}
+    Available balance: Rs. <span class="balance">{{bal}}</span>/-
 
   {% else %}
-  <table border="1px">
+  <table>
     
     {% if tableFor == 'All Income' or tableFor== 'Last Income' %}
     <thead>
@@ -23,7 +24,7 @@
       <th>Remarks</th>
     </thead>
   {% endif %}
-  {%if tableFor == 'All Expenditure' or tableFor== 'Last Expenditure' %}
+  {% if tableFor == 'All Expenditure' or tableFor== 'Last Expenditure' %}
     <thead>
       <th>ID</th>
       <th>Date</th>
@@ -35,8 +36,14 @@
     </thead>
     {% endif %}
 
+  {% if tableFor == 'Users List' %}
+    <thead>
+      <th>ID</th>
+      <th>Username</th>
+    </thead>
+  {% endif %}
+
     {% for item in data %}
-    
   <tr>
       {% for i in range(item|length) %}
         <td>{{item[i]}}</td>

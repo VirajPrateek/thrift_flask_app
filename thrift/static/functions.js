@@ -8,6 +8,10 @@ $(document).ready(function() {
   		case "/features/view":
     		viewForm();
    		 	break;
+   		case "/":
+   			welcomeMessage();
+   			break;
+   	
 	}
 
 $(function(){
@@ -30,12 +34,19 @@ $(function(){
 
 function openNav() {
   document.getElementById("mySidepanel").style.width = "250px";
+  $('.home-page').hide();
 }
 
 function closeNav() {
   document.getElementById("mySidepanel").style.width = "0";
+  $('.home-page').show();
 }
 
+function welcomeMessage(){
+	$('.home-page').append("<span>Welcome!</span>"+
+		"<p>Go to side-bar for adding data</p>"+
+		"<p>Drop-down on top to view data </p>")
+}
 
 function addingExpenditure(){
 

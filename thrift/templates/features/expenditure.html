@@ -11,7 +11,7 @@
     <input type="date" name="date" id='txtDate' value="{{ request.form['date'] }}" placeholder="Date" required>
 <hr>
     <select name="name" id="name" required> 
-    	<option selected disabled option>Who spent?</option>
+    	<option hidden>Who spent?</option>
     	<option value="Prashant">Prashant</option>
     	<option value="Pragya">Pragya</option>
     	<option value="Harsh">Harsh</option>
@@ -21,7 +21,7 @@
     </select>
 <hr>
    <select name="category" id="category" required>
-   		<option selected disabled>Category</option>
+   		<option hidden>Category</option>
    		<option value="Kitchen">Kitchen/Edibles</option>
    		<option value="Toiletry">Toiletry</option>
    		<option value="Stationery">Stationery</option>

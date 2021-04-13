@@ -1,16 +1,16 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} -Thrift</title>
+<title>{% block title %}{% endblock %}Thrift</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-    
+
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='functions.js') }}"></script>
 
-    {% if g.user %}
+   {% if g.user %}
+
   <div class="top-bar">
-      <span class="user">{{ g.user['username'] }}</span>
-      
+    <span class="user">{{ g.user['username'] }}</span>
       <div id="mySidepanel" class="sidepanel">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
           <a class="action" href="{{ url_for('features.income') }}">Add Income</a>
@@ -19,9 +19,9 @@
       </div>
       <button class="openbtn" onclick="openNav()">☰</button> 
       <span class="app-name"><a href="/">Thrift</a></span>
-  </div>
 
-  <form class="view-data-form" method="POST" action="{{ url_for('features.view')}}">
+
+  <form class="view-data-form" method="POST" action="{{ url_for('features.display_data')}}">
     <select name='service' onchange="this.form.submit()">
       <option selected disabled option>What to see?</option>
       <option value="balance-enquiry">Enquire Balance</option>
@@ -29,28 +29,45 @@
       <option value="all-exp">All expenditures</option>
       <option value="all-income">All Incomes</option>
       <option value="last-income"> Last Income</option>
+      <option value ="user-list"> Users List</option>
   </select>
 </form>
 
+  </div>
+
+
+
+
+  <div class="home-page">
+    <!-- displays welcome text from js append -->
+  </div>
 {% else %}
-<div class="front-page">
-  <span class="front-page-name">  &#10084;&#65039; Thrift</span>
-  <span class="links">
+  <center><h1>Thrift</h1>
       <a href="{{ url_for('auth.register') }}">Register</a><br/> Or<br/>
       <a href="{{ url_for('auth.login') }}">Log In</a>
-  </span>
-</div>
+</center>
   {% endif %}
   
+  <center>
+<div class="section-content">
 <section class="content">
   <header>
     {% block header %}{% endblock %}
   </header>
-<center>
   {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
+    {% if message == 'Data inserted!'%}
+    <div class="success">
+    {% else %}
+    <div class="error">
+    {% endif %}
+    {{ message }}
+    </div>
   {% endfor %}
-  {% block content %}{% endblock %}
-</center>
+  
+    {% block content %}{% endblock %}
+
 </section>
+</div>
+</center>
+
 <footer>Made with &#10084;&#65039;, by Prateek</footer>

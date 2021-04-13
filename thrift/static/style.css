@@ -1,8 +1,18 @@
 .view-data-form select{
-    width:200px;
+    width:100%;
     height:40px;
-    float:right;
-    border-radius:5px
+    font-size:18px;
+    background-color: aliceblue;
+    padding-left: 35%;
+    border:none;
+}
+.view-data-form select:hover{
+	background-color: green;
+	transition:0.3s;
+}
+.view-data-form select option{
+	background-color: teal;
+	color: white;
 }
  
  input[type='submit'],select#name,
@@ -25,13 +35,13 @@
     background-color: #4CAF50;
     color: white;
      outline: none;
- 	 color: green;
+
 }
 
 
  select#name, select#source, 
  select#category{
- 	background-color: #008a98;
+ 	background-color: teal;
  	font-size:16px;
  	width:200px;
  	
@@ -97,6 +107,7 @@ input[name='remarks']{
     height:50px;
     text-align:center;
     margin: 10px;
+    border: 1px solid #00bcba;
 }
 hr{
 	border-top: 1px dashed #bbb
@@ -104,16 +115,12 @@ hr{
 header{
 	width:100%;
 	text-align:left;
-	margin-top:20%;
 }
-
 
 
 table {
   border-collapse: collapse;
-  border-spacing: 0;
   width: 100%;
-  border: 1px solid #ddd;
 }
 
 th, td {
@@ -121,10 +128,12 @@ th, td {
   padding: 8px;
 }
 
-tr:nth-child(even){
-	background-color: #f2f2f2
-}
+tr:nth-child(even){background-color: lightblue}
 
+th {
+  background-color: teal;
+  color: white;
+}
 .sidepanel  {
   width: 0;
   position: fixed;
@@ -173,25 +182,44 @@ tr:nth-child(even){
 
 .user{
 float:right;
+z-index:1;
+color:red;
 }
 
 div.top-bar{
 	background-color:black;
+	position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 div.top-bar a{
 text-decoration:none;
 color: white;
 font-family:'Montserrat', sans-serif;
 }
-div.top-bar .app-name {
+div.top-bar .app-name a{
   width: 100;
   overflow-x:0;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
   background-color: black;
-  height: ;
-  font-size: 35px;
+  font-size: 40px;
+   letter-spacing:2px;
+    font-weight:bold;
+
+  background: -webkit-linear-gradient(green, #008cba);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+div.top-bar .app-name a:hover {
+	 background: -webkit-linear-gradient(red, yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+a:hover {
+	 background: -webkit-radial-gradient(green, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 footer{
@@ -204,6 +232,11 @@ footer{
       width: 100%;
       z-index:1;
 }
+footer:hover{
+	letter-spacing: 5px;
+	color: yellow;
+	transition: 1s;
+}
 
 span.front-page{
 	color:black;
@@ -214,22 +247,46 @@ span.front-page{
 	top:30%;
 	left:35%;
 }
+.balance{
+font-size:200%;
+color:red;
+font-weight:bold;
+}
 
-span.front-page-name{
-	position:absolute;
-	top:60vh;
-	left:30vw;
-	font-size:45px;
-	color:black;
+ body{
+ font-family: system-ui;
+background-repeat:no-repeat;
+background-image: linear-gradient(#77c388, #189088);
+min-height:100vh;
+margin:0;
+margin-bottom:12px;
+
 }
-span.links{
-position:absolute;
-top: 70vh;
-left: 40vw;
+
+.section-content{
+/* background-image: linear-gradient(teal, lightgreen); */
+/* min-height: max-content; */
+/* margin-bottom: 50%; */
 }
-span.links a{
-	text-decoration:none;
-	color:red;
-	 background-color:yellow;
-	 font-size:20px
+
+.error{
+border: 2px solid brown;
+color: white;
+background-color: red;
+}
+
+.success{
+border: 2px solid darkgreen;
+color: white;
+background-color: green;
+
+}
+
+.home-page{
+text-align:center;
+background-color:white;
+color: black;
+position:fixed;
+top:35%;
+width: 100%;
 }

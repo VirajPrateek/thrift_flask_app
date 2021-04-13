@@ -11,7 +11,7 @@
     value="{{ request.form['date'] }}" placeholder="Date" required>
 <hr>
   <select name="name" id="name" required> 
-    	<option selected disabled option>Who received?</option>
+    	<option hidden>Who received?</option>
     	<option value="Prashant">Prashant</option>
     	<option value="Pragya">Pragya</option>
     	<option value="Harsh">Harsh</option>
@@ -21,7 +21,7 @@
     </select>
   <hr> 
    <select name="source" id="source" required>
-   		<option selected disabled>Source</option>
+   		<option hidden>Source</option>
    		<option value="ATM">ATM</option>
    		<option value="Cash">In-hand Cash</option>
    		<option value="Online">Online</option>
