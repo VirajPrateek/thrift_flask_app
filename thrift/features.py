@@ -22,6 +22,7 @@ def expenditure():
 		totalAmount = request.form['totalAmount']
 		by = g.user['username']
 		items = request.form['itemList']
+		items = items[:-1] #removing that last comma
 		if items == "":
 			error = "No items entered."
 		if error is None:
@@ -146,9 +147,9 @@ def display_data():
 
 def fetchBalance():
 	db = get_db()
-	totalExp = db.execute("SELECT SUM(amount) FROM expenditure").fetchone()
+	totalExp = db.execute("SELECT COALESCE(SUM(amount),0) FROM expenditure").fetchone()
 	db.commit()
-	totalIncome = db.execute("SELECT SUM(amount) FROM income").fetchone()
+	totalIncome = db.execute("SELECT COALESCE(SUM(amount),0) FROM income").fetchone()
 	db.commit()
 	avlblBalance = totalIncome[0] - totalExp[0]
 	return avlblBalance
