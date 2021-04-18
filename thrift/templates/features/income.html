@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Add Income{% endblock %}</h1>
+  <h1>{% block title %} Add Income{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-<form class="add-income" method="post">
-<hr>  
+<form class="add-income" method="post"> 
+  <div>
   <input type="date" name="date" id='txtDate' 
     value="{{ request.form['date'] }}" placeholder="Date" required>
-<hr>
+</div>
+<div class="name">
   <select name="name" id="name" required> 
     	<option hidden>Who received?</option>
     	<option value="Prashant">Prashant</option>
@@ -19,19 +20,22 @@
     	<option value="Nidhi">Nidhi</option>
     	<option value="Prateek">Prateek</option>
     </select>
-  <hr> 
+  </div>
+<div>
    <select name="source" id="source" required>
    		<option hidden>Source</option>
    		<option value="ATM">ATM</option>
    		<option value="Cash">In-hand Cash</option>
    		<option value="Online">Online</option>
    </select>
-<hr>
+</div>
+<div>
    <input type="number" name="amount" placeholder="Amount" required>   
-<hr> 
-  <input type="textbox" name="remarks" 
+</div>
+<div> 
+  <input type="textbox" name="remarks"
   placeholder="Remarks if any..(e.g. Who gave, which atm?)">
-<hr>
+</div>
     <input type="submit" value="Save">
   </form>
 {% endblock %}

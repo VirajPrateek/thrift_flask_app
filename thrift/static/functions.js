@@ -48,6 +48,7 @@ function welcomeMessage(){
 		"<p>Drop-down on top to view data </p>")
 }
 
+
 function addingExpenditure(){
 
 	var max_fields      = 10; //maximum input boxes allowed

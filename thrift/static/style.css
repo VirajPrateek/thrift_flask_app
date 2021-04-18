@@ -1,13 +1,17 @@
+
 .view-data-form select{
-    width:100%;
+	width:100%;
     height:40px;
     font-size:18px;
     background-color: aliceblue;
-    padding-left: 35%;
     border:none;
+    box-shadow: 0 3px 9px rgba(0,0,0, 0.16), 
+   0 13px 6px rgba(0,0,0,0.23);
 }
+
 .view-data-form select:hover{
-	background-color: green;
+	  color:white;
+	background-color: #054954;
 	transition:0.3s;
 }
 .view-data-form select option{
@@ -40,37 +44,59 @@
 
 
  select#name, select#source, 
- select#category{
+ select#category, select.add_field_button{
  	background-color: teal;
  	font-size:16px;
  	width:200px;
  	
  }
 
+.login-form, .register-form{
+  box-shadow: 0 3px 9px rgba(0,0,0,0.16), 
+   0 3px 6px rgba(0,0,0,0.23);
+   margin: 4vw;
+}
+
 input[type='date'], input[type='password'],
  input[type='text'], input[type = 'number']{
  	background: none;
  	text-align: center;
-	border-radius: 5px;
+/* 	border-radius: 5px; */
 	padding: 10px;
 	width: 200px;
-	border-top: none;
-	border-left: none;
-	border-right: none;
-	border-bottom:2px solid #008cba;
+	border:none;
+/* 	border-bottom:2px solid #008cba; */
 	font-family: 'Montserrat', sans-serif;
     font-size: 25px; 
     margin: 10px;
+    color:#094802
 
 }
 
-/*  servie list */
+
+input,select:focus{
+    outline: none;
+}
+
+form > div{
+
+  box-shadow: 0 3px 9px rgba(0,0,0,0.16), 
+   0 3px 6px rgba(0,0,0,0.23);
+
+	padding: 40px;
+	margin: 30px 5% 0px 5%;
+}
+
+div.input_field_wrap{
+/*     display:inline-block; */
+}
 div.anItem{
-	background-color:lightyellow
+	
+	display:inline-block;
 }
-
 input.iName, input.iAmount{
-	height:20px;
+/* 	height:20px; */
+/* 	width:inherit; */
 	border: 1px solid grey;
 }
 
@@ -81,9 +107,10 @@ height: 30px;
 font-family:'Montserrat', sans-serif;
 color:white;
 }
+
 input.add_field_button{
-margin-top:40px;
-background-color: darkgreen;
+/* margin-top:40px; */
+background-color:#008cba;
 height:40px;
 width:100px;
 border:none;
@@ -103,19 +130,32 @@ input#totalAmountDisplay{
 
 input[name='remarks']{
     font-size:15px;
-    width: 90%;
+    width:100%;
     height:50px;
     text-align:center;
-    margin: 10px;
-    border: 1px solid #00bcba;
+    background:transparent;
+    border: 1px dashed white;
+    color:white;
+/* border:none; */
 }
-hr{
-	border-top: 1px dashed #bbb
+::placeholder{
+    color:#d6b4b4;
 }
-header{
+
+h1{
 	width:100%;
+	padding: 10px 0 10px 0;
+	color: whitesmoke;
+	text-shadow: 3px 2px 2px #337533;
+/* 	display:block; */
 	text-align:left;
+	box-shadow: 0 3px 9px rgb(74 39 39 / 16%), 
+   0 3px 6px rgba(0,0,0,0.23);
+   position:relative;
+   margin-top:140px;
+   z-index:-1;
 }
+
 
 
 table {
@@ -188,19 +228,21 @@ color:red;
 
 div.top-bar{
 	background-color:black;
-	position: -webkit-sticky;
-  position: sticky;
+/* 	position: -webkit-sticky; */
+/*   position: sticky; */
   top: 0;
+  position:fixed;
+  width:100%;
 }
 div.top-bar a{
 text-decoration:none;
-color: white;
+/* color: white; */
 font-family:'Montserrat', sans-serif;
 }
 div.top-bar .app-name a{
-  width: 100;
-  overflow-x:0;
-  background-color: black;
+/*   width: 100; */
+/*   overflow-x:0; */
+/*   background-color: black; */
   font-size: 40px;
    letter-spacing:2px;
     font-weight:bold;
@@ -255,18 +297,22 @@ font-weight:bold;
 
  body{
  font-family: system-ui;
-background-repeat:no-repeat;
+ background-repeat:no-repeat;
 background-image: linear-gradient(#77c388, #189088);
 min-height:100vh;
 margin:0;
-margin-bottom:12px;
-
+/* margin-bottom:12px; */
+}
+body > *:last-child{
+    margin-bottom: 12px;
 }
 
 .section-content{
 /* background-image: linear-gradient(teal, lightgreen); */
 /* min-height: max-content; */
 /* margin-bottom: 50%; */
+/*     display:block; */
+/*     margin-top:170px; */
 }
 
 .error{
@@ -283,10 +329,6 @@ background-color: green;
 }
 
 .home-page{
-text-align:center;
-background-color:white;
-color: black;
-position:fixed;
-top:35%;
-width: 100%;
+display:none;
 }
+
