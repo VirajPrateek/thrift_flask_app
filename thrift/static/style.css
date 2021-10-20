@@ -5,7 +5,7 @@
     font-size:18px;
     background-color: aliceblue;
     border:none;
-    box-shadow: 0 3px 9px rgba(0,0,0, 0.16), 
+    box-shadow: 0 3px 9px rgba(0,0,0, 0.16),
    0 13px 6px rgba(0,0,0,0.23);
 }
 
@@ -18,7 +18,7 @@
 	background-color: teal;
 	color: white;
 }
- 
+
  input[type='submit'],select#name,
   select#category, select#source {
     background-color: black;
@@ -31,7 +31,7 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    font-size: 25px; 
+    font-size: 25px;
     width : 200px;
     margin : 15px;
   }
@@ -39,20 +39,22 @@
     background-color: #4CAF50;
     color: white;
      outline: none;
-
 }
 
+input[name='manage-request-btn']{
+ margin: 10px 10px -40% 10px;
+}
 
- select#name, select#source, 
+ select#name, select#source,
  select#category, select.add_field_button{
  	background-color: teal;
  	font-size:16px;
  	width:200px;
- 	
+
  }
 
 .login-form, .register-form{
-  box-shadow: 0 3px 9px rgba(0,0,0,0.16), 
+  box-shadow: 0 3px 9px rgba(0,0,0,0.16),
    0 3px 6px rgba(0,0,0,0.23);
    margin: 4vw;
 }
@@ -65,9 +67,9 @@ input[type='date'], input[type='password'],
 	padding: 10px;
 	width: 200px;
 	border:none;
-/* 	border-bottom:2px solid #008cba; */
+	border-bottom:1px solid #008cba;
 	font-family: 'Montserrat', sans-serif;
-    font-size: 25px; 
+    font-size: 25px;
     margin: 10px;
     color:#094802
 
@@ -78,20 +80,33 @@ input,select:focus{
     outline: none;
 }
 
-form > div{
+form > div, .card{
 
-  box-shadow: 0 3px 9px rgba(0,0,0,0.16), 
+  box-shadow: 0 3px 9px rgba(0,0,0,0.16),
    0 3px 6px rgba(0,0,0,0.23);
 
 	padding: 40px;
 	margin: 30px 5% 0px 5%;
 }
 
+input[name='mark-done']{
+	background-color : #008cba;
+	color: white;
+	border: none;
+	font-size:15px;
+	padding : 10px;
+	width:50%;
+	margin: 10px auto;
+	margin-bottom:-50%;
+}
+
+
+
 div.input_field_wrap{
 /*     display:inline-block; */
 }
 div.anItem{
-	
+
 	display:inline-block;
 }
 input.iName, input.iAmount{
@@ -143,16 +158,16 @@ input[name='remarks']{
 }
 
 h1{
-	width:100%;
-	padding: 10px 0 10px 0;
+/* 	width:100%; */
+	padding: 10px 0 10px 20px;
 	color: whitesmoke;
 	text-shadow: 3px 2px 2px #337533;
 /* 	display:block; */
 	text-align:left;
-	box-shadow: 0 3px 9px rgb(74 39 39 / 16%), 
+	box-shadow: 0 3px 9px rgb(74 39 39 / 16%),
    0 3px 6px rgba(0,0,0,0.23);
-   position:relative;
-   margin-top:140px;
+/*    position:relative; */
+/*    margin-top:140px; */
    z-index:-1;
 }
 
@@ -231,6 +246,7 @@ div.top-bar{
 /* 	position: -webkit-sticky; */
 /*   position: sticky; */
   top: 0;
+  right: 0;
   position:fixed;
   width:100%;
 }
@@ -258,11 +274,11 @@ div.top-bar .app-name a:hover {
   -webkit-text-fill-color: transparent;
 }
 
-a:hover {
-	 background: -webkit-radial-gradient(green, white);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+/*a:hover {*/
+/*	 background: -webkit-radial-gradient(green, white);*/
+/*  -webkit-background-clip: text;*/
+/*  -webkit-text-fill-color: transparent;*/
+/*}*/
 
 footer{
 	background-color:black;
@@ -298,9 +314,9 @@ font-weight:bold;
  body{
  font-family: system-ui;
  background-repeat:no-repeat;
-background-image: linear-gradient(#77c388, #189088);
+background-image: linear-gradient(#61c18c, #3072a0);
 min-height:100vh;
-margin-top:30%;
+margin-top:20vh;
 /* margin-bottom:12px; */
 }
 body > *:last-child{
@@ -310,7 +326,7 @@ body > *:last-child{
 .section-content{
 /* background-image: linear-gradient(teal, lightgreen); */
 /* min-height: max-content; */
-/* margin-bottom: 50%; */
+margin-bottom: 15%;
 /*     display:block; */
 /*     margin-top:170px; */
 }
@@ -331,4 +347,60 @@ background-color: green;
 .home-page{
 display:none;
 }
+
+#pie-where-is-money-spent, #pie-who-receives-the-money{
+    z-index:-1;
+	position:relative;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+/*   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  padding: 16px;
+  text-align: center;
+/*   font-family: 'Inter', sans-serif; */
+  color: white;
+  /*   background-color: #3c95a7; */
+}
+
+.card:hover{
+	font-size:110%;
+	color:cornsilk;
+	transition:ease-in-out 0.2s;
+}
+
+a{
+	text-decoration:none;
+}
+
 

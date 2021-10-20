@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %} Raise Request{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form class="raise-request" method="post">
+<div>
+   <input type="text" name="item_name" placeholder="Item Name" required>
+</div>
+
+<div>
+  <input type="textbox" name="remarks"
+  placeholder="(If any) specific instructions">
+</div>
+    <input type="submit" value="Request Item">
+  </form>
+{% endblock %}

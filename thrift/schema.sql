@@ -17,7 +17,7 @@ CREATE TABLE expenditure (
   items TEXT NOT NULL,
   category TEXT NOT NULL,
   amount DOUBLE(5,2) NOT NULL,
-  reciept_img BLOB, 
+  reciept_img BLOB,
   FOREIGN KEY (inserted_by) REFERENCES user (username)
 );
 
@@ -30,5 +30,14 @@ CREATE TABLE income (
  amount DOUBLE(5,2) NOT NULL,
  remarks TEXT,
  FOREIGN KEY (inserted_by) REFERENCES user (username)
+ );
+
+ CREATE TABLE request(
+ id INTEGER PRIMARY KEY AUTOINCREMENT,
+ item TEXT NOT NULL,
+ requested_by TEXT NOT NULL,
+ request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ remarks TEXT,
+ FOREIGN KEY (requested_by) REFERENCES user(username)
 
  )

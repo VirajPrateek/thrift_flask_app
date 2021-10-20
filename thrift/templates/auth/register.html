@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}{% endblock %}</h1>
+  <h1>{% block title %}Register{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
+ <!--<div class="error"> Registration is disabled right now</div>-->
+
   <form class="register-form" method="post">
     <input type="text" name="username" id="username" placeholder="Username" autofocus required><br/>
     <input type="password" name="password" id="password" placeholder="Password" required><br/>
+    <input type="password" name="cpassword" id="cpassword" placeholder="Re-enter Password" required><br/>
     <input type="submit" value="Register">
-  </form>
+ </form>
+
+  Or
+  <a href="{{ url_for('auth.login') }}">Login</a>
 {% endblock %}

@@ -14,6 +14,7 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        cpassword = request.form['cpassword']
         db = get_db()
         error = None
 
@@ -21,6 +22,8 @@ def register():
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
+        elif password != cpassword:
+            error = 'Passwords do not match.'
         elif db.execute(
             'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
@@ -61,7 +64,7 @@ def login():
 
         flash(error)
 
-    return render_template('auth/login.html')	
+    return render_template('auth/login.html')
 
 @bp.before_app_request
 def load_logged_in_user():

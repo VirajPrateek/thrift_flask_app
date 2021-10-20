@@ -1,22 +1,21 @@
 $(document).ready(function() {
 
 	var windowLoc = $(location).attr('pathname'); //jquery format to get window.location.pathname
-	switch(windowLoc){      
+	switch(windowLoc){
+	    case "/":
+   			welcomeMessage();
+   			break;
   		case "/features/expenditure":
     		addingExpenditure();
     		break;
   		case "/features/view":
     		viewForm();
    		 	break;
-   		case "/":
-   			welcomeMessage();
-   			break;
-   	
 	}
 
 $(function(){
     var dtToday = new Date();
-    
+
     var month = dtToday.getMonth() + 1;
     var day = dtToday.getDate();
     var year = dtToday.getFullYear();
@@ -24,7 +23,7 @@ $(function(){
         month = '0' + month.toString();
     if(day < 10)
         day = '0' + day.toString();
-    
+
     var maxDate = year + '-' + month + '-' + day;
     $('#txtDate').attr('max', maxDate);
     $('#txtDate').val(maxDate);
@@ -54,7 +53,7 @@ function addingExpenditure(){
 	var max_fields      = 10; //maximum input boxes allowed
 	var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
 	var add_button      = $(".add_field_button"); //Add button ID
-		
+
 	var x = 0; //initlal text box count
 	$(add_button).click(function(e){ //on add input button click
 		e.preventDefault();
@@ -69,9 +68,9 @@ function addingExpenditure(){
 	$(".iAmount").on("change keyup paste", function(){
 		makeExpenditureDataReady();
 		});
-	
+
 	});
- 
+
 
 	$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
 		e.preventDefault();
@@ -110,9 +109,9 @@ function makeExpenditureDataReady(){
 		$('#totalAmount').val(totalAmount);
 		$('#totalAmountDisplay').val(totalAmount);
 		$('#itemList').val(itemList);
-	
+
 }
 
 function viewForm(){
-	
+
 }
