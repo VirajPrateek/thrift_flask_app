@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block view_data_form %}My Account{% endblock %}
+<!-- do not show view_data_form -->
+
+{% block header %}
+<div class="personal-content">
+  <a href="{{url_for('personal.my_account')}}"><div class="to-personal-home">Dashboard</div></a>
+   <h2>{% block title %}Add Income{% endblock %}</h2>
+  {% endblock %}
+
+  {% block content %}
+
+  <form class="add-income" method="post"> 
+   <input type="hidden" name="primary_type" value="Income">
+  <div>
+     <input type="date" name="date" id='txtDate' 
+      value="{{ request.form['date'] }}" placeholder="Date" required>
+  </div>
+  <div>
+   <select name="secondary_type" id="source" required>
+   		<option hidden>Source</option>
+      <option value="Cash">In-hand Cash</option>
+      <option value="Online">Online</option>
+      <option value="Borrowed">Borrowed</option>
+   		<option value="ATM">ATM</option>
+   		<option value="Cash">In-hand Cash</option>
+   		<option value="Online">Online</option> 
+   </select>
+  </div>
+
+  <div>
+    <input type="number" name="amount" placeholder="Amount" required>   
+  </div>
+  <div> 
+    <input type="textbox" name="remarks"
+    placeholder="Details(borrowed from etc.)">
+  </div>
+      <input type="submit" value="Save">
+  </form>
+</div>
+{% endblock %}

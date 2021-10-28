@@ -14,4 +14,4 @@ def index():
     if g.user:
         return render_template('home.html')
     else:
-        return render_template('base.html')
+        return render_template('landing.html')

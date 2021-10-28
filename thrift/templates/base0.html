@@ -1,0 +1,56 @@
+<!-- logged out page -->
+<!doctype html>
+<title>
+  {% block title %}Thrift{% endblock %}
+</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon48x48.png') }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<!--for google charts-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='functions.js') }}"></script>
+
+<body>
+
+  <div class="top-bar">
+    {% block username %}{% endblock %}
+    {% block openbutton %}{% endblock %}
+      <span class="app-name"><a href="/">Thrift</a></span>
+    
+    <div class="view-data-form">
+      {% block view_data_form %}{% endblock %}
+    </div>
+  </div>
+
+<center>
+<div class="section-content">
+  <header>
+   {% block header %} {%endblock%}
+  </header>
+  <center>
+  
+  {% for message in get_flashed_messages() %}
+    {% if message == 'Data inserted!' or message == 'Request Raised!'%}
+    <div class="success">
+    {% else %}
+    <div class="error">
+    {% endif %}
+    {{message}}
+
+    </div>
+  {% endfor %}
+
+
+  {% block content %}{% endblock %}
+
+</center>
+</div>
+
+<footer>Made with &#10084;&#65039;, by Prateek</footer>

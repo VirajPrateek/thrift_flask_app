@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block view_data_form %}{% endblock %}
+<!-- do not show view_data_form -->
+
+{% block content%}
+<div class="personal-content">
+	<div class="greet-user"> Hi {{g.user['username'] }}!</div>
+	Welcome to your personal space.
+
+	<div class="options-list">
+		<a href="{{ url_for('personal.expenditure') }}"><div class="card">Add Expenditure</div></a>
+		<a href="{{ url_for('personal.income') }}"><div class="card">Add Income</div></a>
+		<a href="#"><div class="card">My Profile</div></a>				
+		
+		<form class="view_data_form" method="GET" action="{{ url_for('personal.view_data')}}">
+		<div class="card">
+			<select name='service' onchange="this.form.submit()">
+     			<option selected disabled option>More options</option>
+      			<option value="balance-enquiry">My Balance</option>
+     			<option value="transactions">My Transactions</option>
+     		 	<!-- <option value="loan">My Loans</option> -->
+      			<option value="insights">Insights</option>
+  			</select>
+  		</div>
+		</form>	
+	</div>
+
+</div>
+{% endblock%}

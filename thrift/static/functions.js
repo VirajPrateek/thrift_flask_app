@@ -8,6 +8,9 @@ $(document).ready(function() {
   		case "/features/expenditure":
     		addingExpenditure();
     		break;
+    	case "/personal/expenditure":
+    		addingExpenditure();
+    		break;
   		case "/features/view":
     		viewForm();
    		 	break;
@@ -111,6 +114,8 @@ function makeExpenditureDataReady(){
 		$('#itemList').val(itemList);
 
 }
+
+
 
 function viewForm(){
 

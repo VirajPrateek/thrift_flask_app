@@ -1,36 +1,28 @@
-<!doctype html>
-<title>
-{% block title %}Thrift{% endblock %}</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon48x48.png') }}">
+<!-- logged in page -->
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-<!--for google charts-->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='functions.js') }}"></script>
-
-<body>
-   {% if g.user %}
-
+{% extends "base0.html" %}
+</center>
   <div class="top-bar">
-    <span class="user">{{ g.user['username'] }}</span>
+    {% block username %} 
+      <span class="user">{{ g.user['username'] }}</span> 
+    {% endblock %}
+      
+    {% block openbutton %}
       <div id="mySidepanel" class="sidepanel">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-          <!--<a class="action" href="{{ url_for('features.income') }}">Add Income</a>-->
-          <!--<a class="action" href="{{ url_for('features.expenditure') }}">Add Expenditure</a>-->
-          <!--<a class="action" href="{{ url_for('features.raise_request') }}">Request Item</a>-->
+
+          <a href="{{ url_for('personal.my_account') }}">My Account</a>
           <a href="https://virajprateek.github.io/"  target="_blank">Other Projects</a>
           <a href="{{ url_for('auth.logout') }}">Log Out</a>
       </div>
       <button class="openbtn" onclick="openNav()">☰</button>
-      <span class="app-name"><a href="/">Thrift</a></span>
+  {% endblock %}
 
-  <div class="view-data-form">
+  <!-- {% block appname %}{%endblock%} -->
+<span class="app-name" style="top:0px; left:30px;"><a href="/">Thrift</a></span>
+
+  {% block view_data_form %}
+  <!-- <div class="view-data-form"> -->
   <form method="GET" action="{{ url_for('features.display_data')}}">
     <select name='service' onchange="this.form.submit()">
       <option selected disabled option>What to see?</option>
@@ -41,38 +33,15 @@
       <option value="insights">Insights</option>
       <option value ="user-list"> Users List</option>
   </select>
-</form>
-</div>
-
-  </div>
-
-{% else %}
-  <center><h1 style="margin-top:-20vh">Thrift</h1>
-      <a href="{{ url_for('auth.register') }}">Register</a><br/> Or<br/>
-      <a href="{{ url_for('auth.login') }}">Log In</a>
-</center>
-{% endif %}
-
-  <center>
-<div class="section-content">
-<section class="content">
-  <header>
+  </form>
+  <!-- </div> -->
+  {% endblock %}
+  {% block personal_page %} {% endblock%}
+<center>
     {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    {% if message == 'Data inserted!' or message == 'Request Raised!'%}
-    <div class="success">
-    {% else %}
-    <div class="error">
-    {% endif %}
-    {{ message }}
-    </div>
-  {% endfor %}
 
     {% block content %}{% endblock %}
 
-</section>
-</div>
 </center>
 </body>
 

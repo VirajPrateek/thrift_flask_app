@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS expenditure;
 DROP TABLE IF EXISTS income;
+DROP TABLE IF EXISTS request;
+DROP TABLE IF EXISTS personal;
 
 
 CREATE TABLE user (
@@ -36,8 +38,21 @@ CREATE TABLE income (
  id INTEGER PRIMARY KEY AUTOINCREMENT,
  item TEXT NOT NULL,
  requested_by TEXT NOT NULL,
- request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ request_date DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime')),
  remarks TEXT,
  FOREIGN KEY (requested_by) REFERENCES user(username)
+ );
 
- )
+ CREATE TABLE personal(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  dated DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime')),
+  user TEXT NOT NULL,
+  primary_type TEXT NOT NULL,
+  secondary_type TEXT NOT NULL,
+  amount DOUBLE(5,2) NOT NULL,
+  details TEXT,
+  FOREIGN KEY (user) REFERENCES user(username)
+  )
+
+
+

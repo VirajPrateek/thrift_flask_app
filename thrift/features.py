@@ -207,5 +207,3 @@ def fetchBalance():
 	db.commit()
 	avlblBalance = totalIncome[0] - totalExp[0]
 	return avlblBalance
-
-

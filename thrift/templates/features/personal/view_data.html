@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+<!-- do not show view_data_form -->
+
+{% block header %}
+  <div class="personal-content">
+  	<a href="{{url_for('personal.my_account')}}"><div class="to-personal-home">Dashboard</div></a>
+   <h2>{% block title %}{{tableFor}}{% endblock %}</h2>
+{% endblock %}
+
+{% block view_data_form %}
+<form class="view_data_form" method="GET" action="{{ url_for('personal.view_data')}}">
+	<select name='service' onchange="this.form.submit()">
+      <option selected disabled option>What to see?</option>
+      <option value="balance-enquiry">My Balance</option>
+      <option value="transactions">Transactions</option>
+      <option value="loan">Loans</option>
+      <option value="insights">Insights</option>
+  </select>
+</form>
+{% endblock %}	
+
+{% block content %}
+<div>
+	<div class="result" style="overflow-x: auto; overflow-y: auto;">
+		{% if tableFor == 'Available Balance' %}
+    		Your balance is Rs. <span class="balance">{{bal}}</span>/-
+    	{% else %}
+			<table>
+  			{% if tableFor == 'Transactions' %}
+  				<thead>
+  					<th>ID</th>
+  					<th>Date</th>
+  					<th>Type</th>
+  					<th>Category</th>
+  					<th>Amount</th>
+  					<th>Details</th>
+  				</thead>
+  			 
+  			 {% elif tableFor == 'Insights' %}
+  			 	<thead>
+  			 		<caption>Where does money come from?</caption>
+  			 		<th>Source</th>
+  			 		<th>Total Amount(Rs.)</th>
+  			 	</thead>
+  			 	{% for item in data2 %}
+  			 		<tr>
+      				{% for i in range(item|length) %}
+       			 		<td>{{ item[i] }}</td>
+     				{% endfor %}
+     				</tr>
+     			{% endfor %}
+     		</table>
+     		<div id="pie-where-does-money-come-from"></div>
+
+{# second chart/table #}
+  			 	<table>
+  			 	<thead>
+  			 		<caption>Where is money spent?</caption>
+  			 		<th>Category</th>
+  			 		<th>Total Amount(Rs.)</th>
+  			 	</thead>
+  			 {% endif %}
+
+    		{% for item in data %}
+    			{% if item[2] == 'Expenditure' %}
+  					<tr style="color: #d70a29f7">
+  				{% elif item[2] == 'Income' %}
+  					<tr style="color: #188f1d">
+  				{% else %}
+  					<tr>
+  				{% endif%}
+
+      			{% for i in range(item|length) %}
+       			 	<td>{{ item[i] }}</td>
+     			{% endfor %}
+     				</tr>
+     		{% endfor %}
+     		</table>
+     		<div id="pie-where-is-money-spent"></div>
+ 		{% endif %} 
+	</div>
+</div>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+var data = google.visualization.arrayToDataTable([
+      ['Category', 'Amount Spent'],
+    {%  for i in range(data2|length) %}
+            ['{{ data2[i][0] }}', {{ data2[i][1] }} ],
+    {% endfor %}
+]);
+
+  var options = {'title':'Where does money come from?', 'width':360, 'height':240,
+  backgroundColor: 'transparent', is3D: true};
+
+  var chart = new google.visualization.PieChart(
+  	document.getElementById('pie-where-does-money-come-from'));
+  chart.draw(data, options);
+
+
+var data = google.visualization.arrayToDataTable([
+      ['Category', 'Amount Spent'],
+    {%  for i in range(data|length) %}
+            ['{{ data[i][0] }}', {{ data[i][1] }} ],
+    {% endfor %}
+]);
+
+  var options = {'title':'Where is money spent?(amount)', 'width':360, 'height':240,
+  backgroundColor: 'transparent', is3D: true};
+
+  var chart = new google.visualization.PieChart(document.getElementById('pie-where-is-money-spent'));
+  chart.draw(data, options);
+}
+
+</script>
+{%endblock%}

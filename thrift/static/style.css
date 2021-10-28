@@ -1,8 +1,9 @@
 
 .view-data-form select{
-	width:100%;
+  width:100%;
     height:40px;
     font-size:18px;
+    text-align: center;
     background-color: aliceblue;
     border:none;
     box-shadow: 0 3px 9px rgba(0,0,0, 0.16),
@@ -10,13 +11,13 @@
 }
 
 .view-data-form select:hover{
-	  color:white;
-	background-color: #054954;
-	transition:0.3s;
+    color:white;
+  background-color: #054954;
+  transition:0.3s;
 }
 .view-data-form select option{
-	background-color: teal;
-	color: white;
+  background-color: teal;
+  color: white;
 }
 
  input[type='submit'],select#name,
@@ -47,9 +48,9 @@ input[name='manage-request-btn']{
 
  select#name, select#source,
  select#category, select.add_field_button{
- 	background-color: teal;
- 	font-size:16px;
- 	width:200px;
+  background-color: teal;
+  font-size:16px;
+  width:200px;
 
  }
 
@@ -61,14 +62,14 @@ input[name='manage-request-btn']{
 
 input[type='date'], input[type='password'],
  input[type='text'], input[type = 'number']{
- 	background: none;
- 	text-align: center;
-/* 	border-radius: 5px; */
-	padding: 10px;
-	width: 200px;
-	border:none;
-	border-bottom:1px solid #008cba;
-	font-family: 'Montserrat', sans-serif;
+  background: none;
+  text-align: center;
+/*  border-radius: 5px; */
+  padding: 10px;
+  width: 200px;
+  border:none;
+  border-bottom:1px solid #008cba;
+  font-family: 'Montserrat', sans-serif;
     font-size: 25px;
     margin: 10px;
     color:#094802
@@ -85,19 +86,19 @@ form > div, .card{
   box-shadow: 0 3px 9px rgba(0,0,0,0.16),
    0 3px 6px rgba(0,0,0,0.23);
 
-	padding: 40px;
-	margin: 30px 5% 0px 5%;
+  padding: 40px;
+  margin: 30px 5% 0px 5%;
 }
 
 input[name='mark-done']{
-	background-color : #008cba;
-	color: white;
-	border: none;
-	font-size:15px;
-	padding : 10px;
-	width:50%;
-	margin: 10px auto;
-	margin-bottom:-50%;
+  background-color : #008cba;
+  color: white;
+  border: none;
+  font-size:15px;
+  padding : 10px;
+  width:50%;
+  margin: 10px auto;
+  margin-bottom:-50%;
 }
 
 
@@ -107,12 +108,12 @@ div.input_field_wrap{
 }
 div.anItem{
 
-	display:inline-block;
+  display:inline-block;
 }
 input.iName, input.iAmount{
-/* 	height:20px; */
-/* 	width:inherit; */
-	border: 1px solid grey;
+/*  height:20px; */
+/*  width:inherit; */
+  border: 1px solid grey;
 }
 
 button.remove_field {
@@ -134,12 +135,12 @@ color:white;
 }
 
 input#totalAmountDisplay{
-	border:none;
-	color: red;
-	font-size:30px;
-	width:100px;
-	text-align:right;
-	padding:10px 0px 10px 0px;
+  border:none;
+  color: red;
+  font-size:30px;
+  width:100px;
+  text-align:right;
+  padding:10px 0px 10px 0px;
 }
 
 
@@ -157,14 +158,14 @@ input[name='remarks']{
     color:#d6b4b4;
 }
 
-h1{
-/* 	width:100%; */
-	padding: 10px 0 10px 20px;
-	color: whitesmoke;
-	text-shadow: 3px 2px 2px #337533;
-/* 	display:block; */
-	text-align:left;
-	box-shadow: 0 3px 9px rgb(74 39 39 / 16%),
+h2{
+/*  width:100%; */
+  padding: 10px 0 10px 20px;
+  color: whitesmoke;
+  text-shadow: 3px 2px 2px #337533;
+/*  display:block; */
+  text-align:left;
+  box-shadow: 0 3px 9px rgb(74 39 39 / 16%),
    0 3px 6px rgba(0,0,0,0.23);
 /*    position:relative; */
 /*    margin-top:140px; */
@@ -223,6 +224,7 @@ th {
 }
 
 .openbtn {
+  float: left;
   font-size: 35px;
   cursor: pointer;
   background-color: #111;
@@ -242,18 +244,22 @@ color:red;
 }
 
 div.top-bar{
-	background-color:black;
-/* 	position: -webkit-sticky; */
+  background-color:black;
+/*  position: -webkit-sticky; */
 /*   position: sticky; */
   top: 0;
   right: 0;
   position:fixed;
   width:100%;
+   box-shadow: 0 3px 9px rgba(0,0,0, 0.16),
+   0 13px 6px rgba(0,0,0,0.23);
 }
 div.top-bar a{
-text-decoration:none;
+  position:relative;
+  top:8px;
+  text-decoration:none;
 /* color: white; */
-font-family:'Montserrat', sans-serif;
+  font-family:'Montserrat', sans-serif;
 }
 div.top-bar .app-name a{
 /*   width: 100; */
@@ -269,41 +275,41 @@ div.top-bar .app-name a{
 }
 
 div.top-bar .app-name a:hover {
-	 background: -webkit-linear-gradient(red, yellow);
+   background: -webkit-linear-gradient(red, yellow);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 /*a:hover {*/
-/*	 background: -webkit-radial-gradient(green, white);*/
+/*   background: -webkit-radial-gradient(green, white);*/
 /*  -webkit-background-clip: text;*/
 /*  -webkit-text-fill-color: transparent;*/
 /*}*/
 
 footer{
-	background-color:black;
-	color:white;
-	text-align:center;
-	 position: fixed;
+  background-color:black;
+  color:white;
+  text-align:center;
+   position: fixed;
       left: 0;
       bottom: 0;
       width: 100%;
       z-index:1;
 }
 footer:hover{
-	letter-spacing: 5px;
-	color: yellow;
-	transition: 1s;
+  letter-spacing: 5px;
+  color: yellow;
+  transition: 1s;
 }
 
 span.front-page{
-	color:black;
-	width:;
-	text-align:center;
-	font-size:50px;
-	position:absolute;
-	top:30%;
-	left:35%;
+  color:black;
+  width:;
+  text-align:center;
+  font-size:50px;
+  position:absolute;
+  top:30%;
+  left:35%;
 }
 .balance{
 font-size:200%;
@@ -348,9 +354,10 @@ background-color: green;
 display:none;
 }
 
-#pie-where-is-money-spent, #pie-who-receives-the-money{
-    z-index:-1;
-	position:relative;
+#pie-where-is-money-spent, #pie-who-receives-the-money,
+#pie-where-does-money-come-from{
+  z-index:-1;
+  position:relative;
 }
 
 * {
@@ -394,13 +401,21 @@ display:none;
 }
 
 .card:hover{
-	font-size:110%;
-	color:cornsilk;
-	transition:ease-in-out 0.2s;
+  font-size:110%;
+  color:cornsilk;
+  transition:ease-in-out 0.2s;
 }
 
 a{
-	text-decoration:none;
+  text-decoration:none;
 }
 
-
+.card select[name='service']{
+  padding:10px;
+  width:100%;
+  margin:-10px;
+  text-align:center;
+  background-color:transparent;
+  border:none;
+  font-size:18px;
+}

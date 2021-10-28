@@ -42,5 +42,8 @@ def create_app(test_config=None):
     from . import features
     app.register_blueprint(features.bp)
 
+    from . import personal
+    app.register_blueprint(personal.bp) 
+
     return app
 
