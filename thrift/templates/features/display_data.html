@@ -20,9 +20,16 @@
         <form method='post' id ='{{ item[0] }}' action="{{ url_for('features.manage_request') }}">
         <div>
            <span style="font-size:20px;">{{item[1]}}</span><br/>
-           <span style="font-size: 12px;"></span>{{item[2]}}</span><br/><br/>
-           <span style="font-size:10px; color:white;">{{item[3]}}|{{item[4]}}</span>
+           <span style="font-size:12px;"></span>{{item[2]}}</span><br/><br/>
+           <span style="font-size:10px; background-color:yellow;">{{item[3]}}</span><br/>
+           <span style="font-size:10px; color:white;">{{item[4]}}|{{item[5]}}</span>
+
         <input type = 'hidden' name ='item_id' id = 'item_id' value='{{item[0]}}'>
+        <input type="hidden" name="category" value="{{item[3]}}">
+        <input type="hidden" name="item_name" value="{{item[1]}}">
+        <input type="hidden" name="date" id='txtDate' 
+            value="{{ request.form['date'] }}" placeholder="Date" required>
+        <input type="number" name="iAmount" id="iAmount" required placeholder="Amount">
         <input type = 'submit' value = 'Done' name = 'manage-request-btn'>
 <!--onclick="document.getElementById('{{item[0]}}').style.display='none';"-->
         </div>

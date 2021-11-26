@@ -80,16 +80,17 @@ def raise_request():
     if request.method == 'POST':
         item = request.form['item_name']
         remarks =  request.form['remarks']
+        category = request.form['category']
         requested_by = g.user['username']
 
         db = get_db()
         db.execute(
             """
                 INSERT INTO request
-                (item, remarks, requested_by)
-                VALUES(?,?,?)
+                (item, category, remarks, requested_by)
+                VALUES(?,?,?,?)
             """,
-            (item, remarks, requested_by)
+            (item, category, remarks, requested_by)
             )
         db.commit()
         message ="Request Raised!"
@@ -103,11 +104,26 @@ def raise_request():
 @login_required
 def manage_request():
     if request.method =='POST':
-        del_id = request.form['item_id']
-        db = get_db()
-        db.execute('DELETE FROM request WHERE id = ?', (del_id,))
-        db.commit()
-        return redirect(request.referrer)
+    	category = request.form['category']
+    	item_name = request.form['item_name']
+    	dated = request.form['date']
+    	amount = request.form['iAmount']
+    	name = g.user['username']
+    	del_id = request.form['item_id']
+
+    	db = get_db()
+    	db.execute(
+				"""
+				INSERT INTO expenditure
+					(spent_date, spent_by, category, amount, items, inserted_by)
+				VALUES (?,?,?,?,?,?)
+				""",
+				(dated, name, category, amount, item_name, name))
+    	db.commit()
+    	db = get_db()
+    	db.execute('DELETE FROM request WHERE id = ?', (del_id,))
+    	db.commit()
+    	return redirect(request.referrer)
     return render_template('features/raise_request.html')
 
 @bp.route('/display_data', methods=('GET','POST'))
@@ -139,7 +155,8 @@ def display_data():
 
 		elif service == 'current-requests':
 			query = """
-				SELECT id, item, remarks, requested_by, request_date
+				SELECT id, item, remarks, category, requested_by, 
+					datetime(request_date||"-05:30") as local_time 
 				 FROM request ORDER BY(id) DESC
 				"""
 			tableFor = 'Current Requests'

@@ -37,7 +37,8 @@ CREATE TABLE income (
  CREATE TABLE request(
  id INTEGER PRIMARY KEY AUTOINCREMENT,
  item TEXT NOT NULL,
- requested_by TEXT NOT NULL,
+ category TEXT NOT NULL,
+ requested_by TEXT NOT NULL, 
  request_date DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime')),
  remarks TEXT,
  FOREIGN KEY (requested_by) REFERENCES user(username)
@@ -53,6 +54,4 @@ CREATE TABLE income (
   details TEXT,
   FOREIGN KEY (user) REFERENCES user(username)
   )
-
-
 
