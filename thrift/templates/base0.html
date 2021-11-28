@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon48x48.png') }}">
+  <script src="https://kit.fontawesome.com/fb05a54f6a.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
@@ -22,7 +23,7 @@
   <div class="top-bar">
     {% block username %}{% endblock %}
     {% block openbutton %}{% endblock %}
-      <span class="app-name"><a href="/">Thrift</a></span>
+      <span class="app-name"><a href="/">TH<i class='fa fa-rupee' style="font-size:32px;"></i>IFT</a></span>
     
     <div class="view-data-form">
       {% block view_data_form %}{% endblock %}

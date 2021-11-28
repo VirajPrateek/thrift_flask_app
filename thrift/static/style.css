@@ -320,7 +320,7 @@ font-weight:bold;
  body{
  font-family: system-ui;
  background-repeat:no-repeat;
-background-image: linear-gradient(#61c18c, #3072a0);
+background-image: linear-gradient(#52af7c, #3072a0c9);
 min-height:100vh;
 margin-top:20vh;
 /* margin-bottom:12px; */
@@ -400,12 +400,6 @@ display:none;
   /*   background-color: #3c95a7; */
 }
 
-.card:hover{
-  font-size:110%;
-  color:cornsilk;
-  transition:ease-in-out 0.2s;
-}
-
 a{
   text-decoration:none;
 }
@@ -418,4 +412,17 @@ a{
   background-color:transparent;
   border:none;
   font-size:18px;
+}
+
+.card p{
+  font-size:12px;
+}
+
+.card i {
+  position:relative;
+  float:left;
+  margin-top: 5%;
+  font-size:36px;
+  color:white;
+  z-index: -1;
 }
