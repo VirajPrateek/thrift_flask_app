@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h2>{% block title %}Update LPG{% endblock %}</h2>
+{% endblock %}
+
+{% block content %}
+
+<form method = "POST" onSubmit="return confirm('Pakka na?')">
+  <div>Cylinder being used since: <br/>
+    {% if data|length > 0 %} 
+      {{data[0][1]}}
+    {% else %}
+     <input type="date" name="to_date" id='txtDate1' placeholder="Date" required>
+     {% endif %}
+</div>
+
+
+<div>Cylinder ended on:<br/>
+  <input type="date" name="to_date" id='txtDate' placeholder="Date" required>
+</div>
+
+<div> 
+  <input type="textbox" name="remarks" placeholder="Any other details?">
+</div>
+  
+  <input type="submit" value="Confirm">
+</form>
+
+{% if data|length > 0 %}
+<table>
+<thead>
+      <th>ID</th>
+      <th>From</th>
+      <th>Till</th>
+      <th>Inserted By</th>
+      <th>Remarks</th>
+</thead>
+<tbody>
+{% for item in data %}
+  <tr>
+      {% for i in range(item|length) %}
+        <td>{{item[i]}}</td>
+      {% endfor %}
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+     --------No data to show--------
+{% endif %}
+
+{% endblock %}
+

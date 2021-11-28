@@ -224,3 +224,50 @@ def fetchBalance():
 	db.commit()
 	avlblBalance = totalIncome[0] - totalExp[0]
 	return avlblBalance
+
+
+@bp.route('/lpg_update', methods=('GET','POST'))
+@login_required
+def lpg_update():
+	query =  ''
+	data = ''
+	message = ''
+
+	query = """
+			SELECT id, from_date, to_date, inserted_by, remarks 
+			FROM lpg 
+			ORDER BY(id) DESC
+			"""
+	db = get_db()
+	data = db.execute(query).fetchall()
+	db.commit()
+	
+	if request.method == 'POST':
+		old_to_date = request.form['to_date']
+		remarks = request.form['remarks']
+		inserted_by = g.user['username']
+		
+		new_from_date = old_to_date
+
+		db = get_db()
+		db.execute("""
+			UPDATE lpg 
+			SET to_date = ? 
+			WHERE id = (SELECT MAX(id) FROM lpg)
+			""", (old_to_date,))
+
+		db.commit()
+
+		db.execute("""
+					INSERT INTO lpg 
+					(from_date, inserted_by, remarks) 
+					VALUES(?,?,?)""",
+					(new_from_date, inserted_by, remarks))
+		db.commit()
+		message = "Data inserted!"
+
+		if message is not None:
+			flash(message)
+		return redirect(url_for('home.index'))
+
+	return render_template('features/update_lpg_data.html', data = data)
