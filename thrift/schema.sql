@@ -53,16 +53,15 @@ CREATE TABLE income (
   amount DOUBLE(5,2) NOT NULL,
   details TEXT,
   FOREIGN KEY (user) REFERENCES user(username)
-  )
+  );
+ 
+CREATE TABLE lpg (
+ id INTEGER PRIMARY KEY AUTOINCREMENT,
+ from_date TEXT NOT NULL,
+ to_date TEXT,
+ inserted_by TEXT NOT NULL,
+ remarks TEXT,
+ FOREIGN KEY (inserted_by) REFERENCES user (username)
+ );
 
--- -- 
--- CREATE TABLE lpg (
---  id INTEGER PRIMARY KEY AUTOINCREMENT,
---  from_date TEXT NOT NULL,
---  to_date TEXT,
---  inserted_by TEXT NOT NULL,
---  remarks TEXT,
---  FOREIGN KEY (inserted_by) REFERENCES user (username)
---  );
 
- -- update lpg set to_date='2001-10-10' where id = (select max(id) from lpg);
