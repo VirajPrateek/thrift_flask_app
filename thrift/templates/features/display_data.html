@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block content %}
-
+<!-- =========================BALANCE ENQUIRY BEGIN======================= -->
 <div class="result" style="overflow-x: auto; overflow-y: auto;">
   {% if tableFor == 'Balance Enquiry' %}
     Available balance: Rs. <span class="balance">{{bal}}</span>/-
+<!-- ========================BALANCE ENQUIRY END========================== -->
 
+<!-- =========================CURRENT REQUESTS BEGIN=======================-->
  {% elif tableFor == 'Current Requests' or tableFor == '' %}
     {% if (data|length == 0) %}
         No requests today!<br/>
@@ -28,10 +30,9 @@
         <input type="hidden" name="category" value="{{item[3]}}">
         <input type="hidden" name="item_name" value="{{item[1]}}">
         <input type="hidden" name="date" id='txtDate' 
-            value="{{ request.form['date'] }}" placeholder="Date" required>
+            value="{{ item[5].split(' ')[0] }}" placeholder="Date" required> 
         <input type="number" name="iAmount" id="iAmount" required placeholder="Amount">
         <input type = 'submit' value = 'Done' name = 'manage-request-btn'>
-<!--onclick="document.getElementById('{{item[0]}}').style.display='none';"-->
         </div>
         </form>
         {% endfor %}
@@ -39,7 +40,9 @@
 
  {% else %}
   <table>
+<!-- =========================CURRENT REQUESTS END=======================-->
 
+<!-- =========================INCOME HEADER BEGIN=======================-->
     {% if tableFor == 'Incomes' %}
      *Recent 30 transactions
     <thead>
@@ -52,6 +55,10 @@
       <th>Remarks</th>
     </thead>
   {% endif %}
+<!--============================INCOME HEADER============================-->
+
+<!-- ==========================EXPENDITURE HEADER BEGIN================== -->
+
   {% if tableFor == 'Expenditures' %}
     *Recent 30 transactions
     <thead>
@@ -64,14 +71,18 @@
       <th>Inserted by</th>
     </thead>
     {% endif %}
-
+<!-- ========================EXPENDITURE HEADER END======================= -->
+<!-- ========================USER LIST HEADER BEGIN======================= -->
   {% if tableFor == 'Users List' %}
     <thead>
       <th>ID</th>
       <th>Username</th>
     </thead>
   {% endif %}
+<!-- =======================USER LIST HEADER END========================== -->
 
+<!-- =======================INSIGHTS HEADERS BEGIN========================= -->
+<!-- ================INSIGHTS #1 BEGIN ========= -->
  {% if tableFor == 'Insights' %}
     <thead>
       <caption>Who receives the money?(Income)</caption>
@@ -90,7 +101,8 @@
 <div id="pie-who-receives-the-money">
   <!-- first chart here -->
 </div>
-
+<!-- ===============INSIGHTS #1 END=========== -->
+<!-- ===============INSIGHTS #2 BEGIN========= -->
   <table>
   <thead>
       <caption>Where is money spent?</caption>
@@ -110,7 +122,8 @@
 <div id="pie-where-is-money-spent">
   <!-- second chart here -->
 </div>
-
+<!-- ===============INSIGHTS #2 END=========== -->
+<!-- ===============INSIGHTS #3 BEGIN========= -->
   <table>
     <thead>
       <caption>Who spends the most?</caption>
@@ -121,7 +134,9 @@
       </tr>
     </thead><tbody>
   {% endif %}
+<!-- ===============INSIGHTS #3 END=========== -->
 
+<!-- =================================TABLES BODY BEGIN====================== -->
     {% for item in data %}
   <tr>
       {% for i in range(item|length) %}
@@ -133,8 +148,7 @@
 </table>
 {% endif%}
 </div>
-
-
+<!-- =================================TABLES BODY END====================== -->
 
 <script type="text/javascript">
 // Load google charts
