@@ -103,28 +103,32 @@ def raise_request():
 @bp.route('/manage_request', methods = ('GET', 'POST'))
 @login_required
 def manage_request():
-    if request.method =='POST':
-    	category = request.form['category']
-    	item_name = request.form['item_name']
-    	dated = request.form['date']
-    	amount = request.form['iAmount']
-    	name = g.user['username']
-    	del_id = request.form['item_id']
+	if request.method == 'POST':
+		del_id = request.form['item_id']
 
-    	db = get_db()
-    	db.execute(
-				"""
-				INSERT INTO expenditure
-					(spent_date, spent_by, category, amount, items, inserted_by)
-				VALUES (?,?,?,?,?,?)
-				""",
-				(dated, name, category, amount, item_name, name))
-    	db.commit()
-    	db = get_db()
-    	db.execute('DELETE FROM request WHERE id = ?', (del_id,))
-    	db.commit()
-    	return redirect(request.referrer)
-    return render_template('features/raise_request.html')
+		if request.form.get("manage_request_btn", False) == "Done":
+			category = request.form['category']
+			item_name = request.form['item_name']
+			dated = request.form['date']
+			amount = request.form['iAmount']
+			name = g.user['username']
+
+			db = get_db()
+			db.execute(
+					"""
+					INSERT INTO expenditure
+						(spent_date, spent_by, category, amount, items, inserted_by)
+					VALUES (?,?,?,?,?,?)
+					""",
+					(dated, name, category, amount, item_name, name))
+			db.commit()
+
+
+		db = get_db()
+		db.execute('DELETE FROM request WHERE id = ?', (del_id,))
+		db.commit()
+		return redirect(request.referrer)
+	return render_template('features/raise_request.html')
 
 @bp.route('/display_data', methods=('GET','POST'))
 @login_required
