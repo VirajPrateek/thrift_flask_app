@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
 	var windowLoc = $(location).attr('pathname'); //jquery format to get window.location.pathname
@@ -33,6 +34,7 @@ $(function(){
 });
 
 });
+
 
 function openNav() {
   document.getElementById("mySidepanel").style.width = "250px";

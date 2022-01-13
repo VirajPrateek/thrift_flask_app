@@ -13,12 +13,9 @@
 <div class="name">
   <select name="name" id="name" required> 
     	<option value="" hidden>Who received?</option>
-    	<option value="Prashant">Prashant</option>
-    	<option value="Pragya">Pragya</option>
-    	<option value="Harsh">Harsh</option>
-    	<option value="Yash">Yash</option>
-    	<option value="Nidhi">Nidhi</option>
-    	<option value="Prateek">Prateek</option>
+      {% for item in users %}
+         <option value="{{ item[1] }}">{{ item[1] }}</option>
+      {% endfor %}
     </select>
   </div>
 <div>
@@ -30,7 +27,7 @@
    </select>
 </div>
 <div>
-   <input type="number" name="amount" placeholder="Amount" required>   
+   <input type="number" name="amount" placeholder="Amount" required min="1">   
 </div>
 <div> 
   <input type="textbox" name="remarks"

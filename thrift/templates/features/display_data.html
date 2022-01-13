@@ -18,32 +18,47 @@
         Ask to raise a request.
 
     {% else %}
+    (tap on item name)
         {% for item in data %}
         <form method='post' id ='{{ item[0] }}' action="{{ url_for('features.manage_request') }}">
-        
-          <input type="submit" value = "x" name="manage_request_btn" 
-          onclick = "document.getElementById('iAmount').value='1'; submit();">
-        
-        <div id="request_card">
-           <span style="font-size:20px;">{{item[1]}}</span><br/>
-           <span style="font-size:12px;"></span>{{item[2]}}</span><br /><br />
-          <!-- <span style="font-size:10px; background-color:yellow;">{{item[3]}}</span> -->
-           <div class="requested_by" style="font-size:10px; color:white;">{{item[4]}}|{{item[5]}}</div>
+          <br />
+          <button class="accordion request_card">
+            <span style="font-size:20px;">{{item[1]}}</span> 
+            <input type="submit" value = "x" name="manage_request_btn" 
+              onclick = "document.getElementById('iAmount').value='1'; submit();">
+            <br/> 
+            <span style="font-size:12px;"></span>{{item[2]}}</span>
+            <span class="requested_by">{{item[4]}}|{{item[5]}}</span>
+        </button>
+        <div class="panel">
+          <input type = 'hidden' name ='item_id' id = 'item_id' value='{{item[0]}}'>
+          <input type="hidden" name="category" value="{{item[3]}}">
+          <input type="hidden" name="item_name" value="{{item[1]}}">
+          <input type="hidden" name="date" id='txtDate' 
+             value="{{ item[5].split(' ')[0] }}" placeholder="Date" required> <br />
 
-        <input type = 'hidden' name ='item_id' id = 'item_id' value='{{item[0]}}'>
-        <input type="hidden" name="category" value="{{item[3]}}">
-        <input type="hidden" name="item_name" value="{{item[1]}}">
-        <input type="hidden" name="date" id='txtDate' 
-            value="{{ item[5].split(' ')[0] }}" placeholder="Date" required> <br />
-        <input type="number" name="iAmount" id="iAmount" placeholder="Amount" min="1" required ><br/>
-        <input type = 'submit' value = 'Done' name="manage_request_btn"> <br />      
-        
+          <input type="number" name="iAmount" id="iAmount" placeholder="Amount" min="1" required><br/>
+          <input type = 'submit' value = 'Done' name="manage_request_btn"> <br /> 
         </div>
-        </form>
-        {% endfor %}
+      </form>
+      {% endfor %}         
+      <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i; 
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        }
+      </script>
     {% endif %}
-
- {% else %}
+  {% else %}
   <table>
 <!-- =========================CURRENT REQUESTS END=======================-->
 

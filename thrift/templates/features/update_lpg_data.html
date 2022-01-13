@@ -98,7 +98,7 @@
         let days_holder = lpg_table.rows[i].cells[5];
         days_holder.innerHTML = lifespan;
       }
-
+      lifespan = lifespan > 80 ? 80: lifespan; //normalizing lifespan
       total_days = total_days + lifespan;  
     } 
     if(kind == 'average'){

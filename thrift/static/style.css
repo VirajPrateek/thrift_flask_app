@@ -97,26 +97,17 @@ input[name='mark-done']{
   font-size:15px;
   padding : 10px;
   width:50%;
-  margin: 10px auto;
+  margin: 20px auto;
   margin-bottom:-50%;
 }
 input[value="x"]{
-  background-color:#ff0000cf;
+  background-color:#bf0b0bcf;
   position:relative;
   float:right;
-  right:5%;
+/*   right:5%; */
   width:30px;
-  height:30px;
+/*   height:30px; */
   padding:0;
-}
-
-.requested_by{
-  transform:rotate(90deg);
-  position:relative;
-  float:left;
-  left:-90px;
-  top:40px;
-  z-index: -10;
 }
 
 div.input_field_wrap{
@@ -443,3 +434,39 @@ a{
   color:white;
   z-index: -1;
 }
+
+.requested_by{
+  color: grey;
+  font-size:10px;
+  position:absolute;
+  bottom:0;
+  right:50px
+}
+  .accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 9px 0 0 0;
+    width: 100%;
+    max-width:600px;
+    border: none;
+    text-align: left;
+    padding-left:20px;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    position:relative;
+  }
+  
+  .active, .accordion:hover {
+    background-color: #ccc; 
+  }
+  
+  .panel {
+    margin:0;
+    padding: 0 18px;
+    max-width:600px;
+    display: none;
+    background-color: white;
+/*     overflow: hidden; */
+  }

@@ -13,6 +13,7 @@ bp = Blueprint('features', __name__, url_prefix='/features')
 @bp.route('/expenditure', methods=('GET', 'POST'))
 @login_required
 def expenditure():
+	users = getUserList()
 	if request.method == 'POST':
 		message = None
 		error = None
@@ -42,11 +43,12 @@ def expenditure():
 			return redirect(url_for('home.index'))
 		if error is not None:
 			flash(error)
-	return render_template('features/expenditure.html')
+	return render_template('features/expenditure.html', users = users)
 
 @bp.route('/income', methods=('GET','POST'))
 @login_required
 def income():
+	users = getUserList()
 	if request.method == 'POST':
 		message = None
 		dated = request.form['date']
@@ -71,7 +73,7 @@ def income():
 			flash(message)
 			return redirect(url_for('home.index'))
 
-	return render_template('features/income.html')
+	return render_template('features/income.html', users = users)
 
 
 @bp.route('/raise_request', methods=('GET', 'POST'))
@@ -132,9 +134,12 @@ def manage_request():
 
 @bp.route('/display_data', methods=('GET','POST'))
 @login_required
-def display_data():
-	if request.method == 'GET':
-		service = request.args.get('service')
+def display_data(internal_service = ''):	
+	if (request.method == 'GET') or (internal_service != ''):
+		if request.method == 'GET':
+			service = request.args.get('service')
+		else:
+			service = internal_service
 		db = get_db()
 		message = None
 		error = None
@@ -145,6 +150,7 @@ def display_data():
 		query = ''
 		query2 = ''
 		query3 = ''
+		tableFor = ''
 		if service == 'balance-enquiry':
 			bal = str(fetchBalance())
 			tableFor = 'Balance Enquiry'
@@ -228,6 +234,13 @@ def fetchBalance():
 	db.commit()
 	avlblBalance = totalIncome[0] - totalExp[0]
 	return avlblBalance
+
+def getUserList():
+	db = get_db()
+	query = "SELECT id, username FROM user ORDER BY(id) DESC"
+	users = db.execute(query)
+	db.commit()
+	return users
 
 
 @bp.route('/lpg_update', methods=('GET','POST'))
