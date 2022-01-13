@@ -45,8 +45,11 @@
 </form>
 
 <hr>
+<div id="bar-chart" style=" max-width:600px; height:800px; "></div>
+
 
 {% if data|length > 0 %}
+<div style="height: 500px; overflow-x:auto;">
 <table id="lpg_history">
   <caption>Previous Cylinders</caption>
 <thead>
@@ -67,16 +70,19 @@
   </tr>
   {% endfor %}
   </tbody>
-</table>
-
+</table>  
+</div>
 <script>
   
   let lpg_table = document.getElementById('lpg_history');
+
   calculate_lifespan();
   // calculates lifespan of each and writes
 
   let average_holder = document.getElementById('averagedisplay');
-  average_holder.innerHTML = `AVERAGE CYLINDER LASTS: ${calculate_lifespan('average') } days` ; 
+  average_holder.innerHTML = `<mark>
+    AVERAGE LIFE: ${calculate_lifespan('average') }days
+    </mark>` ; 
   //calculates lifespan of each and returns the average
 
   function calculate_lifespan(kind = 'normal'){
@@ -99,7 +105,42 @@
         return Math.floor(total_days/ (lpg_table.rows.length - 1));
       }
   }
+    let chart_data = new Array(lpg_table.rows.length + 1 );
+    for(let i = 0; i < chart_data.length; i++ ){
+      chart_data[i] = new Array(2);
+    }
 
+    chart_data[0][0] = "Cylinder ID";
+    chart_data[0][1] = "Days"
+    for(let i = 1; i < lpg_table.rows.length; i++){
+      chart_data[i][0] = lpg_table.rows[i].cells[0].innerHTML;
+      chart_data[i][1] = parseInt(lpg_table.rows[i].cells[5].innerHTML);
+    }
+    google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+var data = google.visualization.arrayToDataTable(chart_data);
+
+var options = {
+  title:'Cylinder lifespan trend',
+  bar: {
+    groupWidth: "80%"
+  },
+  backgroundColor: 'transparent',
+  chartArea: {
+      left: 40,
+      width: '100%'
+    },
+    legend: {
+      position: 'top'
+    },
+    width: '100%',
+};
+
+var chart = new google.visualization.BarChart(document.getElementById('bar-chart'));
+  chart.draw(data, options);
+}
 </script>
 {% else %}
      --------No data to show--------
