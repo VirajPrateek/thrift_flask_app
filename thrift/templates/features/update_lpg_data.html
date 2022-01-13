@@ -7,12 +7,29 @@
 {% block content %}
 
 <form method = "POST" onSubmit="return confirm('Pakka na?')">
-  <div>Cylinder being used since: <br/>
+  <div>
+    <span id="numofdays" style="font-size:40px"></span>
+
+    <br />  Cylinder being used since: <br/>
     {% if data|length > 0 %} 
-      {{data[0][1]}}
+      <span id="since_date">{{data[0][1] | string}} </span>  
     {% else %}
      <input type="date" name="to_date" id='txtDate1' placeholder="Date" required>
-     {% endif %}
+     {% endif %} 
+     <script>
+      let since_date_string = document.getElementById('since_date').innerHTML;
+      let numofdays_span = document.getElementById('numofdays');
+      let today = new Date();
+      numofdays_span.innerHTML=`${numOfDays(since_date_string, today)} days`;
+    
+      function numOfDays(since_date_string, till_date_string){
+        let since_date = new Date(since_date_string);
+        let till_date = new Date(till_date_string);
+        let total_days = parseInt((till_date - since_date) / (1000 * 60 * 60 * 24), 10);
+        return total_days;
+    }
+    </script> 
+    <p id="averagedisplay"></p>  
 </div>
 
 
@@ -30,7 +47,7 @@
 <hr>
 
 {% if data|length > 0 %}
-<table>
+<table id="lpg_history">
   <caption>Previous Cylinders</caption>
 <thead>
       <th>ID</th>
@@ -38,21 +55,54 @@
       <th>Till</th>
       <th>Inserted By</th>
       <th>Remarks</th>
+      <th>Days</th>
 </thead>
 <tbody>
 {% for item in data %}
   <tr>
       {% for i in range(item|length) %}
-        <td>{{item[i]}}</td>
+          <td>{{ item[i] }}</td>
       {% endfor %}
+      <td><span id="days"></span></td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
 
+<script>
+  
+  let lpg_table = document.getElementById('lpg_history');
+  calculate_lifespan();
+  // calculates lifespan of each and writes
+
+  let average_holder = document.getElementById('averagedisplay');
+  average_holder.innerHTML = `AVERAGE CYLINDER LASTS: ${calculate_lifespan('average') } days` ; 
+  //calculates lifespan of each and returns the average
+
+  function calculate_lifespan(kind = 'normal'){
+    let total_days = 0;
+    for(let i = 1; i < lpg_table.rows.length; i++){
+      let from_dates = lpg_table.rows[i].cells[1].innerHTML;
+    
+      //current cylinder is calculated till today;
+      let till_dates = i == 1 ? new Date() : lpg_table.rows[i].cells[2].innerHTML;
+
+      let lifespan = numOfDays(from_dates, till_dates);
+      if(kind == 'normal'){
+        let days_holder = lpg_table.rows[i].cells[5];
+        days_holder.innerHTML = lifespan;
+      }
+
+      total_days = total_days + lifespan;  
+    } 
+    if(kind == 'average'){
+        return Math.floor(total_days/ (lpg_table.rows.length - 1));
+      }
+  }
+
+</script>
 {% else %}
      --------No data to show--------
 {% endif %}
 
 {% endblock %}
-
