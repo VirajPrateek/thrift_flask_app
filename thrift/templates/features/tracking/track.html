@@ -1,0 +1,55 @@
+{% if g.user %}
+    {% extends 'base.html' %}
+{% else %}
+    {% extends 'base0.html' %}
+{% endif %}
+
+{% block header %}
+  <h2>{% block title %}Tracker {% endblock %}</h2>
+{% endblock %}
+
+{% block content %}
+    
+<form method="POST" action="{{ url_for('tracking.track')}}">
+    <select name='track_category' onchange="this.form.submit()" 
+    style=" height:40px;">
+      <option selected disabled option>What to track?</option>
+      <option value="Neha-D Sponsored">Neha-D Sponsored</option>
+  </select>
+  </form>
+  {% if totalIncome %}
+
+      <div> Available amount: Rs. {{ totalIncome|float - totalExp|float }}/</div>
+  
+        {% for item in allData %}
+                 {% if (item|length)>3 %}
+                 <div class="card" style="border-left: 4px solid rgb(155, 7, 7)">
+                 <div id="date">{{ item['spent_date'] }} </div> 
+                    <p> {{item['spent_by'] }}
+                    spent Rs. {{ item['amount']}}/- on {{item['items']}}
+                    </p>
+                  </div>
+                 {% else %}
+                 <div class="card" style="border-left: 4px solid rgb(24, 155, 7)">
+                 <div id="date">{{ item['added_date'] }} </div> 
+                 <p>
+                    {{item['received_by']}} received Rs. {{ item['amount'] }}/-
+                 </p>
+                </div>
+                 {% endif %}     
+         {% endfor %}
+    
+   
+
+      </ul>
+    </div>
+  </div> 
+{% else %}
+    <div>
+        Choose item to track
+    </div>
+{% endif %}
+
+{% endblock%}
+
+

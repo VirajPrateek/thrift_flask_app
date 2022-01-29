@@ -12,6 +12,7 @@
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 
           <a href="{{ url_for('personal.my_account') }}"><i class='fa fa-user'></i> My Account</a>
+          <a href="{{url_for('tracking.track')}}"><i class="fas fa-chart-bar"></i> Tracker</a>
           <a href="https://virajprateek.github.io/"  target="_blank">
             <i class="fab fa-buromobelexperte"></i> Other Projects</a>
           <a href="whatsapp://send?text=https://virajprateek.pythonanywhere.com/ 
@@ -21,7 +22,7 @@
       </div>
       <button class="openbtn" onclick="openNav()">☰</button>
   {% endblock %}
-
+</div>
   <!-- {% block appname %}{%endblock%} -->
 <span class="app-name" style="top:0px; left:30px;"><a href="/">Thrift</a></span>
 

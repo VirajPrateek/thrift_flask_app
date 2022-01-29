@@ -110,9 +110,6 @@ input[value="x"]{
   padding:0;
 }
 
-div.input_field_wrap{
-/*     display:inline-block; */
-}
 div.anItem{
 
   display:inline-block;
@@ -168,6 +165,7 @@ input[name='remarks']{
 h2{
 /*  width:100%; */
   padding: 10px 0 10px 20px;
+  max-width:600px;
   color: whitesmoke;
   text-shadow: 3px 2px 2px #337533;
 /*  display:block; */
@@ -184,6 +182,7 @@ h2{
 table {
   border-collapse: collapse;
   width: 100%;
+  max-width:600px;
 }
 
 th, td {

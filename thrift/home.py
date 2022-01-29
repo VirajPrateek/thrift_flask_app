@@ -3,9 +3,7 @@ from flask import (
 )
 
 from werkzeug.exceptions import abort
-
 from thrift.auth import login_required
-from thrift.db import get_db
 
 bp = Blueprint('home', __name__)
 

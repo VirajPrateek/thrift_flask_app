@@ -8,7 +8,27 @@
 <!-- =========================BALANCE ENQUIRY BEGIN======================= -->
 <div class="result" style="overflow-x: auto; overflow-y: auto;">
   {% if tableFor == 'Balance Enquiry' %}
-    Available balance: Rs. <span class="balance">{{bal}}</span>/-
+    Total vailable balance: Rs. <span class="balance">{{ data }}</span>/- 
+    <br/> <br/>
+    <table>
+      <caption>Breakdown</caption>
+      <thead>
+        <th>Type</th>
+        <th>Amount</th>
+      </thead>
+      <tr>
+        <td>{{ data2 }}</td>
+        <td>{{ data3 }}</td>
+      </tr>
+      <tr>
+        <td>General</td>
+        <td>{{ data|float - data3|float}}</td>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td>{{ data }}</td>
+      </tr>
+    </table>
 <!-- ========================BALANCE ENQUIRY END========================== -->
 
 <!-- =========================CURRENT REQUESTS BEGIN=======================-->
@@ -166,7 +186,7 @@
   {% endfor %}
   </tbody>
 </table>
-{% endif%}
+{% endif %}
 </div>
 <!-- =================================TABLES BODY END====================== -->
 

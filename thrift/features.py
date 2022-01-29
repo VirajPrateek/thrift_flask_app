@@ -146,13 +146,16 @@ def display_data(internal_service = ''):
 		data = ''
 		data2 = ''
 		data3 = ''
-		bal = ''
 		query = ''
 		query2 = ''
 		query3 = ''
 		tableFor = ''
 		if service == 'balance-enquiry':
-			bal = str(fetchBalance())
+			recievedData = fetchBalance('Neha-D Sponsored')
+			data = str(recievedData[0])
+			data2 = recievedData[1]
+			data3 = str(recievedData[2])
+
 			tableFor = 'Balance Enquiry'
 
 		elif service == 'exp':
@@ -217,7 +220,7 @@ def display_data(internal_service = ''):
 
 		return render_template('features/display_data.html',
 			 data = data, data2 = data2, data3 = data3,
-			 bal = bal, tableFor = tableFor)
+			 tableFor = tableFor)
 
 		if message is not None:
 			flash(message)
@@ -226,14 +229,18 @@ def display_data(internal_service = ''):
 
 	return render_template('features/display_data.html')
 
-def fetchBalance():
+def fetchBalance(category = 'nehaD-sponsored' ):
 	db = get_db()
 	totalExp = db.execute("SELECT COALESCE(SUM(amount),0) FROM expenditure").fetchone()
-	db.commit()
 	totalIncome = db.execute("SELECT COALESCE(SUM(amount),0) FROM income").fetchone()
-	db.commit()
 	avlblBalance = totalIncome[0] - totalExp[0]
-	return avlblBalance
+	db.commit()
+
+	expForFixedPurpose = db.execute("SELECT COALESCE(SUM(amount),0) FROM expenditure WHERE category = ? ", (category,)).fetchone()
+	incomeForFixedPurpose = db.execute("SELECT COALESCE(SUM(amount),0) FROM income WHERE source = ?", (category,)).fetchone()
+	avlblBalanceForFixedPurpose = incomeForFixedPurpose[0] - expForFixedPurpose[0]
+				
+	return avlblBalance, category, avlblBalanceForFixedPurpose
 
 def getUserList():
 	db = get_db()
