@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block view_data_form %}My Account{% endblock %}
+<!-- do not show view_data_form -->
+
+{% block header %}
+<div class="personal-content">
+  <a href="{{url_for('personal.my_account')}}"><div class="to-personal-home">Dashboard</div></a>
+   <h2>{% block title %}My Health{% endblock %}</h2>
+  {% endblock %}
+
+  {% block content %}
+    <form action="" method="post">
+        <input type="date" name="date" id='txtDate' value="{{ request.form['date'] }}" disabled
+        style="padding:0px; margin:0px">
+
+        <!-- timer -->
+        <br>
+        <button onclick="startTimer(0)">Start</button>
+        <div id='seconds-counter'></div>
+
+        <!-- tiredness slider -->
+        <!-- sweat? -->
+        <!--  -->
+        
+    </form>
+
+    <script>
+     
+    </script>
+  {% endblock%}

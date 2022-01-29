@@ -11,6 +11,7 @@ bp = Blueprint('tracking', __name__, url_prefix='/tracker')
 
 @bp.route('/', methods=('GET', 'POST'))
 def track():
+    track_category = 'None'
     if request.method == 'POST':
         track_category = request.form['track_category']
 
@@ -22,9 +23,8 @@ def track():
         sortedAllData = sorted(allData, key=lambda d: datetime.strptime(d[0], "%Y-%m-%d"), reverse = True)
         # https://stackoverflow.com/a/62732262/7696053
 
-        print(allData)
-
         return render_template('features/tracking/track.html'
+        , track_category = track_category
         , allData = sortedAllData
         , totalIncome = incomeData[1] 
         , totalExp = expData[1]

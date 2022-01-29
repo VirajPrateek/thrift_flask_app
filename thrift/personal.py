@@ -16,6 +16,13 @@ def my_account():
 	return render_template('features/my_account.html')
 
 
+
+@bp.route('/health', methods=('GET', 'POST'))
+@login_required
+def health():
+	print("add health")
+	return render_template("features/personal/add_health.html")
+
 @bp.route('/expenditure', methods=('GET', 'POST'))
 @login_required
 def expenditure():
