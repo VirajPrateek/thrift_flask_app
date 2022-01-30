@@ -1,9 +1,13 @@
-{% include 'base0.html' %}
+{% extends 'base0.html' %}
 
 {% block header %}
-  <h2>{% block title %}Register{% endblock %}</h2>
+  <h2>{% block title %}Register  {% endblock %}</h2>
 {% endblock %}
 
+{% block openbutton %}
+  <img class="openbtn" src="{{ url_for('static', filename='favicon48x48.png') }}" 
+  width="60px" style="padding: 0px;">
+{% endblock %}
 {% block content %}
  <!--<div class="error"> Registration is disabled right now</div>-->
 

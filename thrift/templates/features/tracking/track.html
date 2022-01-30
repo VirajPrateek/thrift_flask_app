@@ -8,6 +8,11 @@
   <h2>{% block title %}Tracker {% endblock %}</h2>
 {% endblock %}
 
+{% block openbutton %}
+  <img class="openbtn" src="{{ url_for('static', filename='favicon48x48.png') }}" 
+  width="60px" style="padding: 0px;">
+{% endblock %}
+
 {% block content %}
     
 <form method="POST" action="{{ url_for('tracking.track')}}">
@@ -21,28 +26,39 @@
   </form>
   {% if track_category %}
 
-      <div> Available amount: Rs. {{ totalIncome|float - totalExp|float }}/</div>
+      <div> Available amount: &#8377;{{ totalIncome|float - totalExp|float }}/-</div>
       <div class="wrapper" style="border-left: 4px solid white; ">
         {% for item in allData %}
         
                  {% if (item|length)>3 %}
                  
-                 <div class="card" style="border-left: 4px solid rgb(155, 7, 7); margin: 20px 0 0 0;">
-                  <li style="font-size: 40px; position: absolute; left:5px;"></li>
-                 <div id="date">{{ item['spent_date'] }} </div> 
-                    <p> {{item['spent_by'] }}
-                    spent Rs. {{ item['amount']}}/- on {{item['items']}}
-                    </p>
+                 <div class="card" style="border-left: 4px solid rgb(155, 7, 7); margin: 20px 5px 0 0;">
+                    <li style="font-size: 40px; position: absolute; left:5px;"></li>
+                    <span class="date" style="font-size: 12px; float:left; background-color: grey;">
+                      {{item['spent_date']}}
+                    </span>
+                    <div class="feature">
+                      {{item['spent_by'] }} spent &#8377;{{ item['amount']}}/-
+                      <p style="word-break: break-all;"> 
+                        for {{item['items']|string}}
+                     </p>
+                    </div>
+                  
+                  
                   </div>
 
                  {% else %}
 
                  <div class="card" style="border-left: 4px solid rgb(24, 155, 7); margin: 20px 0 0 0;">
                   <li style="font-size: 40px; position: absolute; left:5px;"></li>
-                 <div id="date">{{ item['added_date'] }} </div> 
-                 <p>
-                    {{item['received_by']}} received Rs. {{ item['amount'] }}/-
-                 </p>
+                  <span class="date" style="font-size: 12px; float:left; background-color: grey;">
+                    {{ item['added_date'] }}
+                  </span>
+                  <div class="feature">{{item['received_by']}} received &#8377;{{ item['amount'] }}/-
+                    <p style="word-break: break-all;">
+                   
+                    </p>
+                  </div> 
                 </div>
 
                  {% endif %}     
@@ -58,7 +74,18 @@
         Choose item to track
     </div>
 {% endif %}
+<script>
+    s = document.getElementsByClassName('date');
+    for(let i = 0; i < s.length; i++){
+      ds = s[i].textContent;
+      date = new Date(ds);
+      formattedDate = date.toLocaleDateString('en-IN', {
+                            day:'numeric', month:'short'})
 
+    s[i].textContent=formattedDate;
+    }
+
+</script>
 {% endblock%}
 
 

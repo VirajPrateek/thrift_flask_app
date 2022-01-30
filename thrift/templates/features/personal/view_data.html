@@ -23,21 +23,40 @@
 {% block content %}
 <div>
 	<div class="result" style="overflow-x: auto; overflow-y: auto;">
-		{% if tableFor == 'Available Balance' %}
-    		Your balance is Rs. <span class="balance">{{bal}}</span>/-
-    	{% else %}
-			<table>
+	{% if tableFor == 'Available Balance' %}
+
+    		Your balance is <span class="balance">&#8377;{{bal}}</span>/-
+
+    {% else %}
+			
   			{% if tableFor == 'Transactions' %}
-  				<thead>
-  					<th>ID</th>
-  					<th>Date</th>
-  					<th>Type</th>
-  					<th>Category</th>
-  					<th>Amount</th>
-  					<th>Details</th>
-  				</thead>
-  			 
+
+			  Current balance:<span class="balance"> &#8377;{{bal}}</span>/-
+				
+				<div class="wrapper">
+					<p>Last 30 transactions are as follows: </p>
+
+					{% for item in data %}
+						{% if item['primary_type']|string == 'Income' %}
+						<div class="card" style="border-left: 8px solid green;">
+						{% else %}
+
+							<div class="card" style="border-left: 8px solid rgb(179, 4, 42);">
+						{% endif %}
+							<span class="date" style="font-size: 12px; float:left; background-color: grey;">
+								{{item['dated']}}
+							</span>
+							<div style="font-size: 20px;">&#8377;{{item['amount']}}/-</div>
+							<p style="word-break: break-all;">{{item['details']}}</p>
+							<span class="category" style="background-color: grey;">{{item['secondary_type']}}</span>
+						</div>
+
+					{% endfor %}
+
+				</div>
+  			
   			 {% elif tableFor == 'Insights' %}
+			   <table>
   			 	<thead>
   			 		<caption>Where does money come from?</caption>
   			 		<th>Source</th>
@@ -60,17 +79,11 @@
   			 		<th>Category</th>
   			 		<th>Total Amount(Rs.)</th>
   			 	</thead>
-  			 {% endif %}
-
+  			{% endif %}
+			
+		{% if tableFor != 'Transactions' %}
     		{% for item in data %}
-    			{% if item[2] == 'Expenditure' %}
-  					<tr style="color: #d70a29f7">
-  				{% elif item[2] == 'Income' %}
-  					<tr style="color: #188f1d">
-  				{% else %}
-  					<tr>
-  				{% endif%}
-
+    			<tr>
       			{% for i in range(item|length) %}
        			 	<td>{{ item[i] }}</td>
      			{% endfor %}
@@ -78,11 +91,23 @@
      		{% endfor %}
      		</table>
      		<div id="pie-where-is-money-spent"></div>
- 		{% endif %} 
+ 		{% endif %}
+	{% endif %} 
 	</div>
 </div>
 
 <script type="text/javascript">
+//date formatting
+s = document.getElementsByClassName('date')
+for(let i = 0; i < s.length; i++){
+    ds = s[i].textContent;
+    date = new Date(ds);
+    formattedDate = date.toLocaleDateString('en-IN', {
+	day:'numeric', month:'long'})
+    s[i].textContent=formattedDate;
+}
+
+
 // Load google charts
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);

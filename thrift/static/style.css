@@ -1,4 +1,9 @@
-
+:root{
+  --body_bg_img : linear-gradient(#96ace5, #0c334fc9);
+  --app_name_bg: -webkit-linear-gradient(#7590d4, #2f5bb7); 
+  --theme_primary: #2a3da5;
+  --selector_button: teal;
+}
 .view-data-form select{
   width:100%;
     height:40px;
@@ -13,10 +18,9 @@
 .view-data-form select:hover{
     color:white;
   background-color: #054954;
-  transition:0.3s;
 }
 .view-data-form select option{
-  background-color: teal;
+  background-color: var(--selector_button);
   color: white;
 }
 
@@ -37,7 +41,7 @@
     margin : 15px;
   }
  input[type='submit']:hover {
-    background-color: #4CAF50;
+    background-color: var(--theme_primary);
     color: white;
      outline: none;
 }
@@ -48,7 +52,7 @@ input[name='manage-request-btn']{
 
  select#name, select#source,
  select#category, select.add_field_button{
-  background-color: teal;
+  background-color: var(--selector_button);
   font-size:16px;
   width:200px;
 
@@ -68,11 +72,11 @@ input[type='date'], input[type='password'],
   padding: 10px;
   width: 200px;
   border:none;
-  border-bottom:1px solid #008cba;
+  border-bottom:1px solid var(--selector_button);
   font-family: 'Montserrat', sans-serif;
     font-size: 25px;
     margin: 10px;
-    color:#094802
+    color: var(--selector_button)
 
 }
 
@@ -130,9 +134,9 @@ color:white;
 
 input.add_field_button{
 /* margin-top:40px; */
-background-color:#008cba;
-height:40px;
-width:100px;
+background-color: var(--selector_button);
+height:50px;
+width:200px;
 border:none;
 font-family:'Montserrat', sans-serif;
 color:white;
@@ -140,7 +144,7 @@ color:white;
 
 input#totalAmountDisplay{
   border:none;
-  color: red;
+  color: var(--theme_primary);
   font-size:30px;
   width:100px;
   text-align:right;
@@ -276,7 +280,7 @@ div.top-bar .app-name a{
    letter-spacing:2px;
     font-weight:bold;
 
-  background: -webkit-linear-gradient(green, #008cba);
+  background: var(--app_name_bg);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -320,14 +324,14 @@ span.front-page{
 }
 .balance{
 font-size:200%;
-color: brown;
+color: var(--theme_primary);
 font-weight:bold;
 }
 
  body{
  font-family: system-ui;
  background-repeat:no-repeat;
-background-image: linear-gradient(#52af7c, #3072a0c9);
+background-image: var(--body_bg_img);
 min-height:100vh;
 margin-top:20vh;
 /* margin-bottom:12px; */

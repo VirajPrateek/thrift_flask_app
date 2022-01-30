@@ -95,6 +95,27 @@ def income():
 			flash(error)
 	return render_template('features/personal/add_income.html')
 
+def fetchBalance(user):
+	query = """SELECT COALESCE(SUM(amount),0)
+			FROM personal
+			WHERE primary_type='Expenditure' 
+			AND user='"""+user+"""'
+			"""
+	db =get_db()
+	totalExp = db.execute(query).fetchone()
+	db.commit()
+	query = """SELECT COALESCE(SUM(amount),0)
+			FROM personal
+			WHERE primary_type='Income' 
+			AND user='"""+user+"""'
+			"""
+	totalInc = db.execute(query).fetchone()
+	db.commit()
+
+	avlblBal = totalInc[0] - totalExp[0]
+	bal = str(avlblBal)
+
+	return bal
 
 @bp.route('/view_data', methods=('GET', 'POST'))
 @login_required
@@ -114,23 +135,7 @@ def view_data():
 
 		if service == 'balance-enquiry':
 			tableFor = "Available Balance"
-			query = """SELECT COALESCE(SUM(amount),0)
-						FROM personal
-						WHERE primary_type='Expenditure' 
-						AND user='"""+user+"""'
-					"""
-			totalExp = db.execute(query).fetchone()
-			db.commit()
-			query = """SELECT COALESCE(SUM(amount),0)
-						FROM personal
-						WHERE primary_type='Income' 
-						AND user='"""+user+"""'
-					"""
-			totalInc = db.execute(query).fetchone()
-			db.commit()
-
-			avlblBal = totalInc[0] - totalExp[0]
-			bal = str(avlblBal)
+			bal = fetchBalance(user)
 
 		elif service == 'transactions':
 			tableFor = "Transactions"
@@ -142,6 +147,7 @@ def view_data():
 					"""
 			data = db.execute(query).fetchall()
 			db.commit()
+			bal = fetchBalance(user)
 
 		elif service == 'insights':
 			tableFor = "Insights"
